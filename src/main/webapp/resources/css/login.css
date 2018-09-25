@@ -1,0 +1,166 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:300");
+/*  Variales  
+colores de la aplicación
+*/
+/*  Variales  
+colores de la aplicación
+*/
+body {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #e9e9e9;
+    color: #666666;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+}
+
+.login-title, .login-title h1, .login-title span, .login-title span .icn-code-1, .login-title span .icn-code-2, .login-title span .icn-code-3, .login-title span a {
+    padding: 12px 0 12px 0;
+    text-align: center;
+    letter-spacing: 2px; }
+.login-title h1, .login-title span .icn-code-1 h1, .login-title span .icn-code-2 h1, .login-title span .icn-code-3 h1, .login-title span a h1 {
+    margin: 0;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 48px;
+    font-weight: 300; }
+.login-title span, .login-title span .icn-code-1 span, .login-title span .icn-code-2 span, .login-title span .icn-code-3 span, .login-title span a span, .login-title span .icn-code-1, .login-title span .icn-code-2, .login-title span .icn-code-3, .login-title span a, .login-title span .icn-code-1 a, .login-title span .icn-code-2 a, .login-title span .icn-code-3 a {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300; }
+.login-title span .icn-code-1 {
+    color: #81d4fa;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: 300; }
+.login-title span .icn-code-2 {
+    color: #81d4fa;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: 300; }
+.login-title span .icn-code-3 {
+    color: #81d4fa;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: small;
+    font-weight: 300; }
+.login-title span a, .login-title span .icn-code-1 a, .login-title span .icn-code-2 a, .login-title span .icn-code-3 a {
+    color: #81d4fa;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none; 
+}
+
+.span-register{
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 10px;
+}
+
+
+
+.card-login {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    height: none;
+    max-width: 280px;
+    border-top: 5px solid #81d4fa;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); 
+}
+
+.card-login .form-login {
+    height: 100%;
+    padding-top: 10px;
+}
+
+.card-login h2 {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    color: #81d4fa;
+    line-height: 2;
+    text-align: center; 
+    font-size: 25px;
+    font-weight: 500;
+    margin: 10px 0 20px;
+}
+
+.card-login input {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    border: none;
+    border-bottom: 0.001rem solid #9e9e9e;
+    font-size: 14px;
+    font-weight: 400 !important;
+    outline: none;
+    display: block;
+    width: 250px;
+    box-shadow: none;
+    padding: 5px 0 5px 10px;
+    margin-left: 15px;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.card-login input:focus {
+    border-bottom: 0.001rem solid #81d4fa;
+    -webkit-box-shadow: 0 1px 0 0 #81d4fa;
+    box-shadow: 0 0.001rem 0 0 #81d4fa;
+}
+
+.card-login input:required {
+    background: #d50000; 
+}
+
+.card-login button {
+    cursor: pointer;
+    background: #81d4fa;
+    width: 250px;
+    border: 0;
+    border-radius: 0px;
+    padding: 2px;
+    color: #fff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    margin-left: 15px;
+    margin-bottom: 25px;
+    margin-top: 5px;
+}
+
+.card-login button:hover {
+    background: #0277bd; 
+}
+
+.card-login .cta {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    background: #f2f2f2;
+    width: 100%;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    color: #666666;
+    text-align: center; 
+}
+
+.card-login .cta a {
+    color: #333333;
+    text-decoration: none; 
+}
+
+.div-validate {
+    padding: 0 0 15px 0; }
+
+.invalid {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #F44337 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+

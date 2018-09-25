@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>demo</title>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <ui:insert name="headArea" />
+    </h:head>
+
+    <h:body>
+        <div id="container">
+            <div id="content">
+                <p:messages id="msj-principal" showDetail="true"/>
+                <div class="login-title">
+                    <h1>Bienvenido</h1>
+                    <span> 
+                        <i class="icn-code-1"></i>Powered by:<i class="icn-code-3"></i>
+                        <a href='#'>Company name..</a>
+                    </span>
+                </div>
+                <div class="card-login">
+                    <div class="form-login">
+                        <ui:insert name="contentArea" />
+                    </div>
+                    <div class="cta"><a href="#">Olvidaste tu contraseña?</a></div>
+                </div>
+                
+                <div class="span-register">
+                    <span> 
+                        <a href='#'> Registrarse </a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </h:body>
+</html>
+
