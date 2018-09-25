@@ -21,14 +21,24 @@
     <!-- The datasource is bound into JNDI at this location. We reference
         this in META-INF/persistence.xml -->
     <datasource jndi-name="java:jboss/datasources/DemoDS"
-        pool-name="greeter-quickstart" enabled="true" use-java-context="true">
+        pool-name="demo" enabled="true" use-java-context="true">
         <connection-url>${enc.db.url}</connection-url>
         <driver>postgresql</driver>		
         <security>
             <user-name>${enc.db.user}</user-name>
             <password>${enc.db.password}</password>
         </security>
-		
+	
     </datasource>
+    
+<!--    <datasource jndi-name="java:jboss/datasources/DemoDS" pool-name="demo"  use-java-context="true">
+        <connection-url>jdbc:postgresql://localhost:5432/demos</connection-url>
+        <driver>postgresql</driver>		
+        <security>
+            <user-name>demos</user-name>
+            <password>demos</password>
+        </security>
+    </datasource>-->
+    
 </datasources>
 
