@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="templates/login-template.xhtml">
+    <ui:composition template="/templates/login-template.xhtml">
         <ui:define name="contentArea">
 
             <h:form>
@@ -13,7 +13,7 @@
 
                     <p:inputText styleClass="input" 
                                  id="username" 
-                                 placeholder="Usuario" 
+                                 placeholder="Usuario"
                                  required="true"
                                  requiredMessage="Se requiere usuario">
                         <p:ajax event="keyup" update="usuario"/>

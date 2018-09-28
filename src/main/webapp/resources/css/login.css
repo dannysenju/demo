@@ -58,6 +58,14 @@ body {
     padding: 10px;
 }
 
+.span-register a {
+    color: #3b78e7;
+    line-height: 1.4286;
+    margin: 8px 8px;
+    text-transform: none;
+    font-weight: 500;
+    display: inline-block;
+}
 
 
 .card-login {
@@ -155,6 +163,9 @@ body {
 .div-validate {
     padding: 0 0 15px 0; }
 
+.div-form-validate {
+    padding-bottom: : 1px; }
+
 .invalid {
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
     font-size: 12px;
@@ -164,3 +175,57 @@ body {
     border-color: transparent !important;
 }
 
+.card-header h3{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+    color: #202124;
+    font-family: 'Google Sans',arial,sans-serif;
+}  
+
+.card-body input {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    border: none;
+    border-bottom: 0.01rem solid #9e9e9e;
+    font-size: 14px;
+    font-weight: 400 !important;
+    outline: none;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.card-body input:focus {
+    border-bottom: 0.001rem solid #81d4fa;
+    -webkit-box-shadow: 0 1px 0 0 #81d4fa;
+    box-shadow: 0 0.001rem 0 0 #81d4fa;
+}
+
+.card-body input:required {
+    background: #d50000; 
+}
+
+.card-body button {
+    cursor: pointer;
+    background: #81d4fa;
+    width: 250px;
+    border: 0;
+    border-radius: 0px;
+    padding: 0px;
+    color: #fff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.card-body button:hover {
+    background: #0277bd; 
+}
+.div-button{
+    text-align: right;
+}

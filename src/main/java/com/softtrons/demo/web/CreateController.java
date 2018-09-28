@@ -1,54 +1,77 @@
-/*
- * JBoss, Home of Professional Open Source
- * Copyright 2015, Red Hat, Inc. and/or its affiliates, and individual
- * contributors by the @authors tag. See the copyright.txt in the
- * distribution for a full listing of individual contributors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.softtrons.demo.web;
 
-import com.softtrons.demo.domain.User;
-import com.softtrons.demo.domain.UserDao;
+import com.softtrons.demo.domain.entities.User;
+import com.softtrons.demo.service.EJBUserDao;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.event.SelectEvent;
 
-
-@Named // test
+@Named
 @RequestScoped
-public class CreateController {
+public class CreateController implements Serializable {
 
+    private FacesContext context = FacesContext.getCurrentInstance();
+    
     @Inject
-    private FacesContext facesContext;
+    EJBUserDao userDao;
 
-    @Inject
-    private UserDao userDao;
+    private User newUser;
+    
+    private String pass;
+    private String pass1;
 
-    @Named
-    @Produces
-    @RequestScoped
-    private User newUser = new User();
+    @PostConstruct
+    public void init() {
+        newUser = new User();
+    }
 
     public void create() {
         try {
             userDao.createUser(newUser);
-            String message = "A new user with id " + newUser.getId() + " has been created successfully";
-            facesContext.addMessage(null, new FacesMessage(message));
+            String message = "Usuario creado " + newUser.getUsername();
+            context.addMessage(null, new FacesMessage(message));
         } catch (Exception e) {
             String message = "An error has occured while creating the user (see log for details)";
-            facesContext.addMessage(null, new FacesMessage(message));
+            context.addMessage(null, new FacesMessage(message));
         }
     }
+
+    public User getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(User newUser) {
+        this.newUser = newUser;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    
+    public void validatePass() {
+        System.out.println("--->" + newUser.getPassword());
+        System.out.println("--->" + pass);
+        System.out.println("--->" + pass1);
+                
+    }
+
+    public String getPass1() {
+        return pass1;
+    }
+
+    public void setPass1(String pass1) {
+        this.pass1 = pass1;
+    }
+    
+    
+    
 }
