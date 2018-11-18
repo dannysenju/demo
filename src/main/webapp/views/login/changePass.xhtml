@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/views/templates/template.xhtml">
+        <ui:define name="contentArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <h:form id="form-user" class="card" >
+                            <p:messages autoUpdate="true" closable="true" globalOnly="false" showDetail="true"/>
+                            <div class="card-header" style="padding: 0px 40px 0px;">
+                                <a class="header-brand" style="margin-right: 0; ">
+                                    <h:graphicImage library="images" value="/resources/images/icon-logo.png" class="header-brand-img" style="height: 3rem;"/>
+                                </a>
+                                <h3 class="card-title">Olvido su Contraseña</h3>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col-4"></div>
+                                    <div class="col-4">
+                                        <h6 class="header-link" style="margin: 0; font-size: 1.52rem; line-height: 100%;">Enviar Nuevo password</h6>
+                                        <div class="card-link">
+                                            <div class="card-image waves-effect waves-block waves-light" >
+                                                <h:graphicImage library="images" value="/resources/images/office.jpg" styleClass="activator"/>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-form-validate">
+                                                                <p:inputText styleClass="input" id="act-username" placeholder="* Nombre de Usuario" 
+                                                                             value="#{activateBean.username}" required="true"
+                                                                             
+                                                                             requiredMessage="Se requiere usuario">
+                                                                    <f:validator binding="#{valExistUser}" />
+                                                                    <p:ajax event="keyup" update="usuario"/>
+                                                                </p:inputText>
+                                                                <p:message id="usuario" for="act-username" styleClass="invalid" display="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-form-validate">
+                                                                <p:inputText styleClass="input" id="create-email" placeholder="* Correo Electrónico" rendered="#{activateBean.isBlockUser}"
+                                                                             required="true" value="#{activateBean.email}" requiredMessage="Se requiere email"
+                                                                             size="20">
+                                                                    <f:validator validatorId="valEmail"/>
+                                                                    <p:ajax event="keyup" update="email-msg"/>
+                                                                </p:inputText>
+                                                                <p:message id="email-msg" for="create-email" styleClass="invalid" display="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--pass-->
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-button">
+                                                                <p:commandButton styleClass="button"
+                                                                                 id="loginButton" 
+                                                                                 value="Enviar Password" 
+                                                                                 action="#{activateBean.createPass()}"
+                                                                                 update="form-user"
+                                                                                 onclick="PF('blockCode').show();"
+                                                                                 
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-4"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <p:blockUI block="entiredPage" trigger="loginButton" widgetVar="blockCode" styleClass="block-div">
+                                <div class="row">
+                                    <div class="col-2"></div>
+                                    <div class="col-8 loading">
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                    </div>
+                                    <div class="col-2"></div>
+                                </div>
+                                <div class="row">
+                                    Espere Por favor
+                                </div>
+                            </p:blockUI>
+                        </h:form>    
+
+                         
+
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

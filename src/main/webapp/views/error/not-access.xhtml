@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/views/templates/menu-layout.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="headContent">
+        <style>
+            #dlg-expire .ui-dialog-titlebar {
+                display: none !important;
+            }
+        </style>
+        <p:idleMonitor timeout="300000" onactive="PF('idleDialog').show()" />  
+
+        <p:dialog header="Expiro la Sesión" resizable="false" styleClass="modal-login" id="dlg-expire"
+                  widgetVar="idleDialog" modal="true" width="400">  
+            <div class="modal-body text-center">
+                <h3>Reconectese!!!</h3>
+                <hr/>
+                <input id="confirmBackToLogin" type="button" value="ir a Login" class="btn btn-primary"
+                       onclick="window.location = '#{facesContext.externalContext.requestContextPath}/views/logOn.xhtml';" />
+            </div>
+
+        </p:dialog>  
+    </ui:define>
+
+    <ui:define name="bodyContent">
+        <div class="container text-center">
+            <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i>Alerta</div>
+            <h1 class="h2 mb-3">Oops.. No tienes acceso a esta módulo...</h1>
+            <p class="h4 text-muted font-weight-normal mb-7">Por favor Contáctese con el administrador.</p>
+            <a class="btn btn-primary" href="javascript:history.back()">
+                <i class="fe fe-arrow-left mr-2"></i>ir atrás
+            </a>
+        </div>
+    </ui:define>
+
+</ui:composition>

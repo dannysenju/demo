@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/views/templates/template.xhtml">
+        <ui:define name="contentArea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <h:form id="form-user" class="card" >
+                            <div class="card-header" style="padding: 18px 40px 18px;">
+                                <a class="header-brand" style="margin-right: 0; ">
+                                    <h:graphicImage library="images" value="/resources/images/icon-logo.png" class="header-brand-img" style="height: 3rem;"/>
+                                </a>
+                                <h3 class="card-title">Lo sentimos tu Usuario está Bloqueado</h3>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="row">
+                                    <div class="col-4"></div>
+                                    <div class="col-4">
+                                        <h3 class="header-link" style="margin: 0;margin-bottom: 15px;">Re-Activa tu cuenta</h3>
+                                        <div class="card-link">
+                                            <div class="card-image waves-effect waves-block waves-light" style=" display: #{activateBean.isBlockUser ? 'block' : 'none'};">
+                                                <h:graphicImage library="images" value="/resources/images/office.jpg" styleClass="activator"/>
+                                            </div>
+                                            <div class="card-content" style="padding: 24px 24px 0 24px; display: #{activateBean.isBlockUser ? 'block' : 'none'};">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-form-validate">
+                                                                <p:inputText styleClass="input" id="act-username" placeholder="* Nombre de Usuario" 
+                                                                             value="#{activateBean.username}" required="true"
+                                                                             rendered="#{activateBean.isBlockUser}"
+                                                                             requiredMessage="Se requiere usuario">
+                                                                    <f:validator binding="#{valExistUser}" />
+                                                                    <p:ajax event="keyup" update="usuario"/>
+                                                                </p:inputText>
+                                                                <p:message id="usuario" for="act-username" styleClass="invalid" display="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-form-validate">
+                                                                <p:inputText styleClass="input" id="create-email" placeholder="* Correo Electrónico" rendered="#{activateBean.isBlockUser}"
+                                                                             required="true" value="#{activateBean.email}" requiredMessage="Se requiere email"
+                                                                             size="20">
+                                                                    <f:validator validatorId="valEmail"/>
+                                                                    <p:ajax event="keyup" update="email-msg"/>
+                                                                </p:inputText>
+                                                                <p:message id="email-msg" for="create-email" styleClass="invalid" display="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--pass-->
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-button">
+                                                                <p:commandButton styleClass="button"
+                                                                                 id="loginButton" 
+                                                                                 value="Enviar Código" rendered="#{activateBean.isBlockUser}"
+                                                                                 action="#{activateBean.createCode()}"
+                                                                                 update="form-user"
+                                                                                 onclick="PF('blockCode').show();"
+                                                                                 
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-content" style="padding: 24px 24px 0 24px; display: #{activateBean.isBlockUser ? 'none' : 'block'};">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-form-validate">
+                                                                <p:inputText styleClass="input" id="act-code" placeholder="* Código de Activación" 
+                                                                             value="#{activateBean.codActivate}" required="true" rendered="#{not activateBean.isBlockUser}"
+                                                                             requiredMessage="Se requiere codigo activacion">
+                                                                    <p:ajax event="keyup" update="activate"/>
+                                                                </p:inputText>
+                                                                <p:message id="activate" for="act-code" styleClass="invalid" display="text"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="div-button">
+                                                                <p:commandButton styleClass="button"
+                                                                                 id="codeButton" rendered="#{not activateBean.isBlockUser}"
+                                                                                 value="Activar usuario" 
+                                                                                 action="#{activateBean.activateUser()}"
+                                                                                 update="form-user"
+                                                                                 
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <p:blockUI block="entiredPage" trigger="loginButton" widgetVar="blockCode" styleClass="block-div">
+                                <div class="row">
+                                    <div class="col-2"></div>
+                                    <div class="col-8 loading">
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                        <div class="loading-bar"></div>
+                                    </div>
+                                    <div class="col-2"></div>
+                                </div>
+                                <div class="row">
+                                    Espere Por favor
+                                </div>
+                            </p:blockUI>
+                        </h:form>    
+
+                        <p:dialog id="pop-code" widgetVar="dlg2" styleClass="modal-login" modal="true" closable="true" draggable="false" resizable="false">
+                            
+                                <div class="modal-body text-center">
+                                    <h2>En hora buena</h2>
+                                    <p>Se ha enviado un correo electrónico a 
+                                        <span class="card-title activator"> #{activateBean.email}</span>
+                                        para re-activar tu cuenta en sigre.</p>
+                                    <hr/>
+                                </div>   
+
+                        </p:dialog>  
+
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

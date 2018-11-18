@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/views/templates/login-template.xhtml">
+        <ui:define name="contentArea">
+
+            <h:form id="login-form">
+                <p:messages id="msj-login" showDetail="false" closable="true" styleClass="msj-login" showIcon="false" />
+                <h2>Ingresa con tu cuenta</h2>
+                <div class="div-validate">
+
+                    <p:inputText styleClass="input" 
+                                 id="username" 
+                                 placeholder="Usuario"
+                                 required="true" value="#{loginBean.username}"
+                                 requiredMessage="Se requiere usuario">
+                        <p:ajax event="keyup" update="usuario"/>
+                    </p:inputText>
+                    <p:message id="usuario" for="username" styleClass="invalid" display="text"/>
+                </div>
+
+                <div class="div-validate">
+
+                    <p:password styleClass="input" 
+                                id="pass" required="true" 
+                                placeholder="Contraseña" value="#{loginBean.password}"
+                                requiredMessage="Se requiere contraseña">
+                        <p:ajax event="keyup" update="password"/>
+                    </p:password>
+                    <p:message id="password" for="pass" styleClass="invalid" display="text"/>
+                </div>
+
+                
+
+
+
+
+                <p:commandButton styleClass="button"
+                                 id="loginButton" 
+                                 value="Entrar" action="#{loginBean.login()}"
+                                 update="@all"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

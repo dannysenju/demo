@@ -168,7 +168,7 @@ body {
 
 .invalid {
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 12px;
+    font-size: 12px !important;
     font-weight: bold;
     color: #F44337 !important;
     background-color: transparent !important;
@@ -213,9 +213,9 @@ body {
 
 .card-body button {
     cursor: pointer;
-    background: #81d4fa;
+    background: #81d4fa !important;
     width: 250px;
-    border: 0;
+    border: 0 !important;
     border-radius: 0px;
     padding: 0px;
     color: #fff;
@@ -225,6 +225,255 @@ body {
 
 .card-body button:hover {
     background: #0277bd; 
+}
+.div-button{
+    text-align: right;
+}
+
+
+.div-form-validate .ui-password-info {
+    margin: 0;
+    color: #000;
+    text-shadow: none;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2;
+}
+
+.div-form-validate .ui-password-panel {
+    padding: 4px 4px 0px 4px;
+    width: 150px;
+    background: #fff;
+    margin-top: -16px;
+    border: 0.01rem solid #9e9e9e;
+    border-radius: 0px;
+    box-shadow: none;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+.div-form-validate .fancy-checkbox {
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.div-form-validate .fancy-checkbox i {
+    font-size: 25px;
+}
+
+
+.div-form-validate .fancy-checkbox input[type="checkbox"],
+.fancy-checkbox .checked {
+    display: none;
+
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+    cursor: pointer;
+}
+
+.div-image-banner {
+    display: flex;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.div-image-banner img {
+    height: 13rem;
+}
+
+.header-link{
+    color: #ee6e73;
+    font-weight: 300;
+    font-size: 1.92rem;
+    line-height: 110%;
+    margin: 1.9466666667rem 0 1.168rem 0;
+}
+.card-link{
+    overflow: visible;
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.card-link .card-image {
+    position: relative;
+    display: block;
+}
+.card-link .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    border-style: none;
+}
+
+.card-link .card-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+}
+
+.card-link .card-content .card-title {
+    display: block;
+    line-height: 32px;
+    font-size: 23px;
+    font-weight: 300;
+    color: #212121 !important;
+}
+
+
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+
+}
+
+.msj-login{
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+#login-form\:msj-login .ui-corner-all {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.no-print {
+    display: none !important;
+}
+
+.modal-login {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0;
+    outline: 0;
+}
+
+.block-div {
+    width: 100px;
+}
+.loading {
+    position: relative;
+}
+.loading-bar {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+    background-color: #3498db;
+    animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+    background-color: #c0392b;
+    animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+    background-color: #f1c40f;
+    animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+    background-color: #27ae60;
+    animation-delay: .27s;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1, 2.2);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.card-activate input {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    border: 0 !important;
+    border-bottom: 1px solid #9e9e9e !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    outline: none;
+    display: block;
+    width: 100%;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 0px;
+    margin-bottom: 15px;
+    /* border: none !important; */
+    text-shadow: none !important;
+}
+
+.card-activate input:focus {
+    border-bottom: 1px solid #81d4fa;
+    -webkit-box-shadow: 0 1px 0 0 #81d4fa;
+    box-shadow: 1px 0 0 #81d4fa;
+}
+
+.card-activate input:required {
+    background: #d50000; 
+}
+
+.card-activate button {
+    cursor: pointer;
+    background: #81d4fa !important;
+    width: 250px;
+    border: 0 !important;
+    border-radius: 0px;
+    padding: 0px;
+    color: #fff !important;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    font-weight: 500 !important;
+    text-shadow: none !important;
+}
+
+.card-activate button:hover {
+    background: #0277bd !important; 
 }
 .div-button{
     text-align: right;

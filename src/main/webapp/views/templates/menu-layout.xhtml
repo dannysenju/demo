@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>greenapps</title>
+        <h:outputStylesheet library="css" name="index.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-grid.css"/>
+        <h:outputStylesheet library="css" name="dashboard.css"/>
+        <h:outputStylesheet library="css" name="tabler.css"/>
+        <h:outputStylesheet library="css" name="all.css"/>
+        <h:outputScript name="bootstrap.js" library="js" target="body"/>
+        <h:outputScript name="menu.js" library="js" target="body"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/fav-icon.ico"/>
+    </h:head>
+    <h:body id="entiredPage">
+        <h:form id="form-ppal">  
+            <div>
+                <p:menubar id="menu-ppal" styleClass="bd-navbar nav-dashboard">
+                    
+                    
+                    
+                    <p:menuitem id="admin-menu" value="" action="#{loginBean.navigate('/views/admin/admin.xhtml')}" rendered="#{loginBean.rol eq 'ADMIN'}" 
+                                icon="fe fe-home" styleClass="modules-nav"/>
+                    <p:menuitem id="dash-menu" value="" action="#{loginBean.navigate('/views/dashboard.xhtml')}"  rendered="#{loginBean.rol ne 'ADMIN'}"
+                                icon="fe fe-home" styleClass="modules-nav"/>
+                    
+                    
+                    <c:forEach items="#{loginBean.menuModulesList}" var="menu">
+                        <p:menuitem value="#{menu.nombre}" url="#{menu.url}" styleClass="modules-nav" 
+                                    icon="#{menu.icono}"   
+                                    />
+                    </c:forEach>
+
+                    <f:facet name="options">
+                        <div class="dropdown">
+                            <a href="#"  id="btn-perfil" class="nav-link pr-0 leading-none dropbtn" onclick="showMenu()"
+                               data-toggle="dropdown" aria-expanded="false">
+                                <span class="avatar" >
+                                    <o:graphicImage id="img-profile" 
+                                                    value="#{imageUserBean.getImage(loginBean.id)}" styleClass="avatar" 
+                                                    lastModified="#{userBean.lastModified}"/>
+                                </span>
+                                <span class="ml-2 d-none d-lg-block">
+                                    <span class="text-default">#{loginBean.fullName}</span>
+                                    <small class="text-muted d-block mt-1">#{loginBean.rol}</small>
+                                </span>
+                            </a>
+                            <div id="menu-perfil"
+                                 class="dropdown-content dropdown-menu dropdown-menu-right dropdown-menu-arrow align-items-center" x-placement="bottom-end" 
+                                 style="position: absolute; background-color: #0275d8; transform: translate3d(-56px, 32px, 0px); top: 16px; left: 28px; will-change: transform;">
+                                <a class="dropdown-item" onclick="goToPerfil()">
+                                    <i class="dropdown-icon fe fe-user" style="color: white;"></i> Perfil
+                                    <p:remoteCommand name="remotePerfil" actionListener="#{loginBean.navigate('/views/login/edit.xhtml')}" />
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="dropdown-icon fe fe-help-circle" style="color: white;"></i> Ayuda?
+                                </a>
+                                <a class="dropdown-item" onclick="logOut()" >
+                                    <i class="dropdown-icon fe fe-log-out" style="color: white;"></i>Salir
+                                    <p:remoteCommand name="logOutRemote" actionListener="#{loginBean.logout()}" />
+                                </a>
+                            </div>
+                        </div>
+                    </f:facet>
+                </p:menubar>
+            </div>
+        </h:form>
+
+        <div id="div-derecha" class="container">
+            <ui:insert name="headContent">
+            </ui:insert>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="page">
+                <div class="page-main">
+                    <div class="my-3 my-md-5">
+                        <div class="container">
+                            <ui:insert name="bodyContent"/>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>demo</title>
+        <h:outputStylesheet library="css" name="tabler.css"/>
+        <h:outputStylesheet library="css" name="dashboard.css"/>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <h:outputScript name="login.js" library="js" target="body"/>
+        <ui:insert name="headArea" />
+    </h:head>
+
+    <h:body id="entiredPage">
+        <div class="page">
+            <div class="page-main">
+                <div class="header">
+                    <div class="container">
+                        <div class="d-flex">
+                            <a class="header-brand" href="#">
+                                <h:graphicImage library="images" value="/resources/images/logo-2.png" class="header-brand-img"
+                                                style="height: 3rem;"/>
+                            </a>
+                            <div class="d-flex order-lg-2 ml-auto">
+                                <div class="nav-item d-none d-md-flex">
+                                    <a href="https://www.google.com" 
+                                       class="btn btn-sm btn-outline-primary" target="_blank">Visítenos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-3 my-md-5">
+                    <p:messages id="msj" closable="true" showDetail="true" globalOnly="false" showIcon="false" />
+                    <ui:insert name="contentArea" />
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+
