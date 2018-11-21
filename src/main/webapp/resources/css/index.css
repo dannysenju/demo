@@ -18,7 +18,7 @@ body {
     padding: 0 !important;
     font-weight: 700;
     text-align: center;
-    background: #0275d8 !important;
+    background: #74D14C !important;
     color: white;
     border-radius: 0px;
     border: 0;
@@ -60,10 +60,18 @@ body {
     color: white;
     font-size: 16px;
     text-align: center;
+    margin-right: 10px;
 }
 
 #form-ppal\:menu-ppal li a:hover {
-    background: #0269c2 !important;
+    background: #57BD2C !important;
+    box-shadow: none !important;
+    padding-bottom: 18px;
+    color: #495057;
+}
+
+#drop-menu:hover {
+    background: #57BD2C !important;
     box-shadow: none !important;
 }
 
@@ -79,7 +87,10 @@ body {
     padding: 0.375rem 0.75rem !important;
     border-radius: 3px !important;
     box-shadow: none !important;
+}
 
+.input-hidden-prime:hover {
+    border: 1px solid #74D14C !important;
 }
 
 .btn-hidden-prime {
@@ -281,10 +292,11 @@ body {
     background: #fff !important;
     border-radius: 3px !important;
     box-shadow: none !important;
-
-
 }
 
+.select-hidden-prime:hover {
+    border: 1px solid #74D14C !important;
+}
 #menu-admin\:create-user-form\:console_label .ui-inputfield {
 
     box-shadow: none !important;
@@ -293,7 +305,16 @@ body {
 
 .ui-selectonemenu .ui-selectonemenu-label {
     box-shadow: none !important;
-    padding-top: 0px !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-label:hover {
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: #000 !important;
+    border-radius: 0 !important;
+    background: #f5f7fb !important;
 }
 
 .ui-selectonemenu .ui-selectonemenu-trigger {
@@ -310,7 +331,6 @@ body {
     text-align: center;
     white-space: nowrap;
     background: #fbfbfc !important;
-
     width: 32px !important;
     text-shadow: none !important;
     border-radius: 3px !important;
@@ -434,4 +454,78 @@ body {
     background-clip: border-box;
     border: 1px solid rgba(0, 40, 100, 0.12);
     border-radius: 3px;
+}
+
+#menu-admin\:delete-user\:users {
+    text-align: center !important;
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom{
+    border: 0 !important;
+    margin: 0 auto;
+    box-shadow: none !important;
+    margin-left: 30% !important;
+    display: table;
+}
+
+.text-muted-app {
+    color: #e0e5ec !important;
+}
+
+.form-control:focus {
+    border-color: #74D14C !important;
+}
+
+#menu-admin .card {
+    box-shadow: none !important;
+    border-left: 3px solid #74D14C !important;
+}
+
+.card {
+    box-shadow: none !important;
+    border-left: 3px solid #74D14C !important;
+}
+
+#menu-admin .card-header {
+    padding: 10px 0 0 30px !important;
+    min-height: 3rem !important;
+    border-bottom: 1px solid #B8EFA0 !important;
+    border-left: 3px solid #f1c40f !important;
+    box-shadow: none !important;
+}
+
+#menu-admin .card-body {
+    border-bottom: 1px solid #B8EFA0;
+    border-left: 3px solid #f1c40f;
+    box-shadow: none !important;
+}
+
+#menu-admin .card-footer {
+    min-height: 3rem !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid #B8EFA0 !important;
+    border-left: 3px solid #f1c40f !important;
+    box-shadow: none !important;
+}
+
+.div-hidden-prime {
+    text-shadow: none !important;
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 3px !important;
+    box-shadow: none !important;
+
+}
+
+.delete-icon {
+    background: #cd201f !important; 
+    color: #fff !important;  
+    cursor: pointer; 
+    animation: tada 2s linear infinite;
+}
+
+#menu-admin\:delete-user\:users .social-links li a {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+    line-height: 2.5rem !important;
+    
 }

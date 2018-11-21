@@ -13,20 +13,23 @@
                     <div class="col-10">
                         <h:form id="form-user" class="card" >
                             <p:messages autoUpdate="true" closable="true" globalOnly="false" showDetail="true"/>
-                            <div class="card-header" style="padding: 0px 40px 0px;">
-                                <a class="header-brand" style="margin-right: 0; ">
-                                    <h:graphicImage library="images" value="/resources/images/icon-logo.png" class="header-brand-img" style="height: 3rem;"/>
-                                </a>
-                                <h3 class="card-title">Olvido su Contraseña</h3>
+                            <div class="card-header text-center">
+                                <div class="row" style="margin: auto;">
+                                    <a class="header-brand col-lg-2 mt-1" style="margin: auto; left: 10px;">
+                                        <h:graphicImage library="images" value="/resources/images/logo-2.png" class="header-brand-img"
+                                                        style="animation: rubberBand 1s normal infinite; height: 3rem;"/>
+                                    </a>
+                                    <h3 class="card-title col-lg-10 mt-3">Olvido su Contraseña</h3>
+                                </div>
                             </div>
                             <div class="card-body text-center">
                                 <div class="row">
                                     <div class="col-4"></div>
                                     <div class="col-4">
-                                        <h6 class="header-link" style="margin: 0; font-size: 1.52rem; line-height: 100%;">Enviar Nuevo password</h6>
+                                        <h6 class="header-link" style="margin: 0; font-size: 1.52rem; line-height: 100%;">Enviar Nueva Contraseña</h6>
                                         <div class="card-link">
                                             <div class="card-image waves-effect waves-block waves-light" >
-                                                <h:graphicImage library="images" value="/resources/images/office.jpg" styleClass="activator"/>
+                                                <h:graphicImage library="images" value="/resources/images/office_1.jpg" styleClass="activator"/>
                                             </div>
                                             <div class="card-content">
                                                 <div class="row">
@@ -35,7 +38,6 @@
                                                             <div class="div-form-validate">
                                                                 <p:inputText styleClass="input" id="act-username" placeholder="* Nombre de Usuario" 
                                                                              value="#{activateBean.username}" required="true"
-                                                                             
                                                                              requiredMessage="Se requiere usuario">
                                                                     <f:validator binding="#{valExistUser}" />
                                                                     <p:ajax event="keyup" update="usuario"/>
@@ -71,16 +73,15 @@
                                                                                  action="#{activateBean.createPass()}"
                                                                                  update="form-user"
                                                                                  onclick="PF('blockCode').show();"
-                                                                                 
-                                                                />
+
+                                                                                 />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
-                                        <div class="col-4"/>
+                                        <div class="col-4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +102,7 @@
                             </p:blockUI>
                         </h:form>    
 
-                         
+
 
                     </div>
                     <div class="col-1"></div>

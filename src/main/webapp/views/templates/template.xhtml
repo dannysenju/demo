@@ -5,11 +5,13 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>demo</title>
+        <title>greenapps</title>
         <h:outputStylesheet library="css" name="tabler.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
         <h:outputStylesheet library="css" name="login.css"/>
+        <h:outputStylesheet library="css" name="animate.css"/>
         <h:outputScript name="login.js" library="js" target="body"/>
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
         <ui:insert name="headArea" />
     </h:head>
 
@@ -17,22 +19,21 @@
         <div class="page">
             <div class="page-main">
                 <div class="header">
-                    <div class="container">
-                        <div class="d-flex">
-                            <a class="header-brand" href="#">
-                                <h:graphicImage library="images" value="/resources/images/logo-2.png" class="header-brand-img"
-                                                style="height: 3rem;"/>
+                    <div class="container" style="height: 40px;">
+                        <div class="d-flex" style="margin-top: -10px;">
+                            <a class="header-brand mt-1">
+                                <h:graphicImage library="images" value="/resources/images/logo.png" style="width: 150px; animation: zoomIn 5s normal infinite;"/>
                             </a>
-                            <div class="d-flex order-lg-2 ml-auto">
+                            <div class="d-flex order-lg-2 ml-auto mt-1">
                                 <div class="nav-item d-none d-md-flex">
-                                    <a href="https://www.google.com" 
+                                    <a href="https://www.google.com" style="color: #3C9914; border-color: #3C9914; animation: swing 1s linear infinite;"
                                        class="btn btn-sm btn-outline-primary" target="_blank">Visítenos</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="my-3 my-md-5">
+                <div class="collapse d-lg-flex p-3">
                     <p:messages id="msj" closable="true" showDetail="true" globalOnly="false" showIcon="false" />
                     <ui:insert name="contentArea" />
                 </div>

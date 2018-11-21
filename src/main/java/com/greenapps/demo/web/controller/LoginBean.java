@@ -41,6 +41,7 @@ public class LoginBean extends GeneralBean implements Serializable {
     private String fullName;
     private String rol;
     private int id;
+    private boolean hasImage;
 
     @Inject
     IAuthBean authentication;
@@ -58,6 +59,7 @@ public class LoginBean extends GeneralBean implements Serializable {
     void init() {
         username = "";
         password = "";
+        hasImage = false;
 
     }
 
@@ -117,6 +119,8 @@ public class LoginBean extends GeneralBean implements Serializable {
         this.fullName = u.getNombreCompleto();
         this.rol = u.getRol().toUpperCase();
         this.id = u.getIdusuario();
+        
+        hasImage = u.getImagen() != null;
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         //CREANDO LAS 3 VARIABLES DE SESION: username, rol userId
@@ -283,5 +287,13 @@ public class LoginBean extends GeneralBean implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isHasImage() {
+        return hasImage;
+    }
+
+    public void setHasImage(boolean hasImage) {
+        this.hasImage = hasImage;
     }
 }

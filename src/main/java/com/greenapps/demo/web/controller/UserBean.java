@@ -58,7 +58,6 @@ public class UserBean extends GeneralBean implements Serializable {
         usuario = userEJB.getUserById(Integer.parseInt(idString));
         hasImage = false;
         lastModified = new Date();
-//        LoginBean login = (LoginBean) context.getApplication().getVariableResolver().resolveVariable(context, "loginBean");
         fullNameUser = userEJB.getFullName(usuario.getIdusuario());
     }
 
@@ -73,6 +72,8 @@ public class UserBean extends GeneralBean implements Serializable {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Imagen subida con exito", null));
                 hasImage = true;
                 lastModified = Calendar.getInstance().getTime();
+                LoginBean login = (LoginBean) context.getApplication().getVariableResolver().resolveVariable(context, "loginBean");
+                login.setHasImage(true);
             } else {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se pudo actualizar su foto, contacte al administrador", null));
             }

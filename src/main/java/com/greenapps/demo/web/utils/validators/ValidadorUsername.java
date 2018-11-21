@@ -28,7 +28,7 @@ public class ValidadorUsername implements Validator {
 
         String username = o.toString();
 
-        if (userDao.countUsername(username)) {
+        if (userDao.countUsername(username.toUpperCase())) {
             FacesMessage msg
                     = new FacesMessage(Constant.MSG_ERROR_VAL_USERNAME,
                             Constant.MSG_ERROR_USERNAME);

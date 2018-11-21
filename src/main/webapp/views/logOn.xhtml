@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/views/templates/login-template.xhtml">
         <ui:define name="contentArea">
 
@@ -11,7 +10,6 @@
                 <p:messages id="msj-login" showDetail="false" closable="true" styleClass="msj-login" showIcon="false" />
                 <h2>Ingresa con tu cuenta</h2>
                 <div class="div-validate">
-
                     <p:inputText styleClass="input" 
                                  id="username" 
                                  placeholder="Usuario"
@@ -32,12 +30,6 @@
                     </p:password>
                     <p:message id="password" for="pass" styleClass="invalid" display="text"/>
                 </div>
-
-                
-
-
-
-
                 <p:commandButton styleClass="button"
                                  id="loginButton" 
                                  value="Entrar" action="#{loginBean.login()}"

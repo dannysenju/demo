@@ -12,14 +12,15 @@
             <c:if test="#{loginBean.rol eq 'ADMIN'}">
                 <div class="row">
                     <div class="col-lg-3">
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="media">
                                     <span class="avatar avatar-xl mr-3">
                                         <o:graphicImage styleClass="avatar avatar-xl mr-3"
-                                                        id="img-profile" value="#{imageUserBean.getImage(userBean.usuario.idusuario)}" 
+                                                        id="img-profile" value="#{imageUserBean.getImage(userBean.usuario.idusuario)}"  rendered="#{loginBean.hasImage}"
                                                         lastModified="#{userBean.lastModified}"/>
+                                        <h:graphicImage library="images" styleClass="avatar avatar-xxl mr-3" rendered="#{not loginBean.hasImage}" 
+                                                        value="/resources/images/profile.png" />
                                     </span>
                                     <div class="media-body">
                                         <h3 class="mr-1">#{adminBean.fullNameUser}</h3>
@@ -32,10 +33,10 @@
                         <p:accordionPanel id="menu-admin" activeIndex="null">
                             <p:tab title="Crear Usuario" titletip="clic para entrar" titleStyleClass="card">
                                 <h:form id="create-user-form">
-                                    <div class="card-header">
+                                    <div class="card-header" id="create-user-header">
                                         <h6>Datos básicos</h6>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id="create-user-body">
                                         <p:messages id="msj-create-user-form" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
                                         <fieldset class="form-fieldset">
                                             <div class="row">
@@ -179,7 +180,7 @@
                                             </div>
                                         </fieldset>
                                     </div>
-                                    <div class="card-footer text-right">
+                                    <div class="card-footer text-right" id="create-user-body">
                                         <div class="d-flex">
                                             <p:commandButton styleClass="btn btn-primary ml-auto btn-hidden-prime"
                                                              id="create-user" 
@@ -267,43 +268,47 @@
 
                                     <p:messages id="msj-delete" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
 
-                                    <p:dataGrid var="user" value="#{adminBean.listUsers}" columns="3" layout="grid" styleClass="card input-hidden-prime"
-                                                rows="12" paginator="true" id="users" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    <p:dataGrid var="user" value="#{adminBean.listUsers}" columns="3" layout="grid" styleClass="card-body div-hidden-prime" paginatorPosition="bottom"
+                                                emptyMessage="No hay usuarios registrados en la aplicación" currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}"
+                                                rows="12" paginator="true" id="users" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                 rowsPerPageTemplate="6,12,16">
-                                        <div class="card-header">
-                                            <f:facet name="header">
-                                                <h6 class="text-center" style="padding-top: 10px;">
-                                                    Listado de usuarios
-                                                </h6>
-                                                
-                                            </f:facet>
-                                        </div>
 
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <span class="avatar avatar-xxl mr-5" >
-                                                    <o:graphicImage styleClass="avatar avatar-xxl mr-5" id="delete-profile" value="#{imageUserBean.getImage(user.idusuario)}" 
-                                                                    lastModified="#{userBean.lastModified}"/>
-                                                </span>
-                                                <div class="media-body">
-                                                    <h4 class="m-0">Juan Hernandez</h4>
-                                                    <p class="text-muted mb-0">Webdeveloper</p>
-                                                    <ul class="social-links list-inline mb-0 mt-2">
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="1234567890"><i class="fa fa-phone"></i></a>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="@skypename"><i class="fa fa-skype"></i></a>
-                                                        </li>
-                                                    </ul>
+                                        <f:facet name="header">
+                                            <h6 class="text-center" style="padding-top: 10px; margin: auto;">
+                                                Listado de usuarios
+                                            </h6>
+                                        </f:facet>
+                                        <div class="card">
+                                            <div class="row">
+                                                <div class="col-sm-4 ml-4 mt-2 mb-0 mr-0">
+                                                    <span class="avatar avatar-xxl" >
+                                                        <o:graphicImage styleClass="avatar avatar-xxl" id="delete-profile" value="#{imageUserBean.getImage(user.idusuario)}" rendered="#{user.imagen ne null}"
+                                                                        lastModified="#{userBean.lastModified}"/>
+
+                                                        <h:graphicImage library="images" styleClass="avatar avatar-xxl" rendered="#{user.imagen eq null}" 
+                                                                        value="/resources/images/profile.png" />
+                                                    </span>
+                                                </div>
+                                                <div class="col-sm-4 mt-6">
+                                                    <div class="media-body">
+                                                        <h6 class="m-0">#{user.username}</h6>
+                                                        <p class="text-muted m-0">Rol: #{user.rol}</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-3" >
+                                                    <div class="media-body">
+                                                        <ul class="social-links list-inline mb-0 mt-6">
+                                                            <li class="list-inline-item">
+                                                                <a class="delete-icon" title="Dar de baja" data-toggle="tooltip" data-original-title="Eliminar">
+                                                                    <i class="fas fa-user-times"></i>
+                                                                </a>    
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <p class="text-muted ml-2 mb-1 mt-0">#{user.nombreCompleto}</p>
                                         </div>    
 
                                     </p:dataGrid>

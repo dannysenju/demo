@@ -13,48 +13,44 @@
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="bootstrap-grid.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
-        <h:outputStylesheet library="css" name="tabler.css"/>
         <h:outputStylesheet library="css" name="all.css"/>
+        <h:outputStylesheet library="css" name="animate.css"/>
         <h:outputScript name="bootstrap.js" library="js" target="body"/>
         <h:outputScript name="menu.js" library="js" target="body"/>
-        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/fav-icon.ico"/>
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
     </h:head>
     <h:body id="entiredPage">
         <h:form id="form-ppal">  
             <div>
                 <p:menubar id="menu-ppal" styleClass="bd-navbar nav-dashboard">
-                    
-                    
-                    
                     <p:menuitem id="admin-menu" value="" action="#{loginBean.navigate('/views/admin/admin.xhtml')}" rendered="#{loginBean.rol eq 'ADMIN'}" 
-                                icon="fe fe-home" styleClass="modules-nav"/>
+                                icon="fas fa-home" styleClass="modules-nav"/>
                     <p:menuitem id="dash-menu" value="" action="#{loginBean.navigate('/views/dashboard.xhtml')}"  rendered="#{loginBean.rol ne 'ADMIN'}"
                                 icon="fe fe-home" styleClass="modules-nav"/>
-                    
-                    
                     <c:forEach items="#{loginBean.menuModulesList}" var="menu">
                         <p:menuitem value="#{menu.nombre}" url="#{menu.url}" styleClass="modules-nav" 
-                                    icon="#{menu.icono}"   
-                                    />
+                                    icon="#{menu.icono}"   />
                     </c:forEach>
 
                     <f:facet name="options">
-                        <div class="dropdown">
+                        <div id="drop-menu" class="dropdown" style="position: absolute; top: 0; right: 0;">
                             <a href="#"  id="btn-perfil" class="nav-link pr-0 leading-none dropbtn" onclick="showMenu()"
                                data-toggle="dropdown" aria-expanded="false">
                                 <span class="avatar" >
                                     <o:graphicImage id="img-profile" 
-                                                    value="#{imageUserBean.getImage(loginBean.id)}" styleClass="avatar" 
+                                                    value="#{imageUserBean.getImage(loginBean.id)}" styleClass="avatar" rendered="#{loginBean.hasImage}"
                                                     lastModified="#{userBean.lastModified}"/>
+                                    <h:graphicImage library="images" styleClass="avatar" rendered="#{not loginBean.hasImage}" 
+                                                            value="/resources/images/profile.png" />
                                 </span>
                                 <span class="ml-2 d-none d-lg-block">
-                                    <span class="text-default">#{loginBean.fullName}</span>
-                                    <small class="text-muted d-block mt-1">#{loginBean.rol}</small>
+                                    <span>#{loginBean.fullName}</span>
+                                    <small class="text-muted-app d-block mt-1">#{loginBean.rol}</small>
                                 </span>
                             </a>
                             <div id="menu-perfil"
                                  class="dropdown-content dropdown-menu dropdown-menu-right dropdown-menu-arrow align-items-center" x-placement="bottom-end" 
-                                 style="position: absolute; background-color: #0275d8; transform: translate3d(-56px, 32px, 0px); top: 16px; left: 28px; will-change: transform;">
+                                 style="position: absolute; background-color: #93E372; transform: translate3d(-56px, 32px, 0px); top: 16px; left: 28px; will-change: transform;">
                                 <a class="dropdown-item" onclick="goToPerfil()">
                                     <i class="dropdown-icon fe fe-user" style="color: white;"></i> Perfil
                                     <p:remoteCommand name="remotePerfil" actionListener="#{loginBean.navigate('/views/login/edit.xhtml')}" />

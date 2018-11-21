@@ -12,11 +12,15 @@
                     <div class="col-1"></div>
                     <div class="col-10">
                         <h:form id="form-user" class="card" >
-                            <div class="card-header" style="padding: 18px 40px 18px;">
-                                <a class="header-brand" style="margin-right: 0; ">
-                                    <h:graphicImage library="images" value="/resources/images/icon-logo.png" class="header-brand-img" style="height: 3rem;"/>
-                                </a>
-                                <h3 class="card-title">Lo sentimos tu Usuario está Bloqueado</h3>
+                            <div class="card-header text-center">
+                                <div class="row" style="margin: auto;">
+                                    <a class="header-brand col-lg-1 mt-1" style="margin: auto; left: 10px; ">
+                                        <h:graphicImage library="images" value="/resources/images/logo-2.png" class="header-brand-img"
+                                                        style="animation: rubberBand 1s normal infinite; height: 3rem;"/>
+                                    </a>
+                                    <h3 class="card-title col-lg-11 mt-3">Lo sentimos tu Usuario está Bloqueado</h3>
+                                </div>
+
                             </div>
                             <div class="card-body text-center">
                                 <div class="row">
@@ -24,8 +28,8 @@
                                     <div class="col-4">
                                         <h3 class="header-link" style="margin: 0;margin-bottom: 15px;">Re-Activa tu cuenta</h3>
                                         <div class="card-link">
-                                            <div class="card-image waves-effect waves-block waves-light" style=" display: #{activateBean.isBlockUser ? 'block' : 'none'};">
-                                                <h:graphicImage library="images" value="/resources/images/office.jpg" styleClass="activator"/>
+                                            <div class="card-image waves-effect waves-block waves-light" style=" display: #{activateBean.isBlockUser ? 'block' : 'none'}; background-color: #ececec40;">
+                                                <h:graphicImage library="images" value="/resources/images/activate.png" styleClass="activator"/>
                                             </div>
                                             <div class="card-content" style="padding: 24px 24px 0 24px; display: #{activateBean.isBlockUser ? 'block' : 'none'};">
                                                 <div class="row">
@@ -69,9 +73,7 @@
                                                                                  value="Enviar Código" rendered="#{activateBean.isBlockUser}"
                                                                                  action="#{activateBean.createCode()}"
                                                                                  update="form-user"
-                                                                                 onclick="PF('blockCode').show();"
-                                                                                 
-                                                                />
+                                                                                 onclick="PF('blockCode').show();"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -92,7 +94,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="row">
                                                     <div class="col-md-4 col-lg-12">
                                                         <div class="form-group">
@@ -101,9 +103,7 @@
                                                                                  id="codeButton" rendered="#{not activateBean.isBlockUser}"
                                                                                  value="Activar usuario" 
                                                                                  action="#{activateBean.activateUser()}"
-                                                                                 update="form-user"
-                                                                                 
-                                                                />
+                                                                                 update="form-user"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -132,14 +132,12 @@
                         </h:form>    
 
                         <p:dialog id="pop-code" widgetVar="dlg2" styleClass="modal-login" modal="true" closable="true" draggable="false" resizable="false">
-                            
-                                <div class="modal-body text-center">
-                                    <h2>En hora buena</h2>
-                                    <p>Se ha enviado un correo electrónico a 
-                                        <span class="card-title activator"> #{activateBean.email}</span>
-                                        para re-activar tu cuenta en sigre.</p>
-                                    <hr/>
-                                </div>   
+
+                            <div class="modal-body text-center">
+                                <h3 class="header-link" style="margin: 0;margin-bottom: 15px;">En hora buena</h3>
+                                <h3 class="card-title col-lg-11 mt-3">Se ha enviado un correo electrónico para re-activar tu cuenta.</h3>
+                                <p></p>
+                            </div>   
 
                         </p:dialog>  
 

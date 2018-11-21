@@ -56,7 +56,7 @@ public class ActivateBean extends GeneralBean implements Serializable {
     }
 
     private void updateUserCod(String code) {
-        Usuario u = userEJB.getUserbyName(this.username);
+        Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
         this.id = u.getIdusuario();
         userEJB.updateCode(code, this.id);
     }
@@ -65,7 +65,7 @@ public class ActivateBean extends GeneralBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         String code = jsfUtilities.getCode();
         if (EmailUtils.getInstace().sendEmail(email, code, "Nueva Contraseña")) {
-            Usuario u = userEJB.getUserbyName(this.username);
+            Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
             this.id = u.getIdusuario();
             if (userEJB.updatePass(code, this.id)) {
                 navigate("/views/logOn.xhtml");

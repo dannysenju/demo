@@ -28,7 +28,7 @@ public class ValidadorExistUser implements Validator {
 
         String username = o.toString();
 
-        if (!userDao.countUsername(username)) {
+        if (!userDao.countUsername(username.toUpperCase())) {
             FacesMessage msg
                     = new FacesMessage(Constant.MSG_ERROR_USERNAME_EXIST,
                             Constant.MSG_ERROR_USERNAME_EXIST);
