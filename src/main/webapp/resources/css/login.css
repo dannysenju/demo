@@ -520,3 +520,85 @@ body {
     box-shadow: none !important;
     border: 0 !important;
 }
+
+.animated-title-img {
+    animation: rubberBand 5s normal infinite; 
+    width: 10rem !important;
+}
+.animated-title {
+    animation: tada 2s linear 4;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width:100%; 
+    font:italic bold 10px arial,sans-serif; 
+    font-size: 11px !important;
+    text-align:center;
+}
+
+.animated-title-img-pass {
+    width: 150px !important; 
+    animation: zoomIn 5s normal infinite;
+}
+
+.animated-contact {
+    color: #3C9914 !important; 
+    border-color: #3C9914 !important; 
+    animation: swing 1s linear infinite !important;
+}
+
+.contact {
+    position: absolute !important;
+    background-color: #fff;
+    transform: translate3d(-56px, 32px, 0px);
+    top: 12px !important;
+    right: 0;
+    will-change: transform;
+    width: 400px !important;
+    z-index: 1000;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    display: none;
+    border-radius: 0 !important;
+        border: 1px solid #57BD2C;
+}
+
+.show {
+    display: block !important;
+}
+
+.card-options a:not(.btn) i {
+    font-size: 2rem !important;
+
+}
+.card-options {
+    position: relative;
+    bottom: 30px;
+    right: 0;
+}
+
+
+.dropdown-menu-arrow:after {
+    top: -11px !important;
+    border-right: 10px solid transparent !important;
+    border-bottom: 10px solid #fff !important;
+    border-left: 10px solid transparent !important;
+}
+
+.dropdown-menu-arrow:before {
+    top: -11px !important;
+    border-right: 10px solid transparent !important;
+    border-bottom: 10px solid rgba(0, 40, 100, 0.12) !important;
+    border-left: 10px solid transparent !important;
+    border-bottom-color: rgba(0, 0, 0, 0.74) !important;
+}
+
+.card-profile-img {
+    border: 3px solid #74D14C !important;
+}
+
+.card-link {
+    box-shadow: none !important;
+    border: 1px solid #74D14C !important;
+}

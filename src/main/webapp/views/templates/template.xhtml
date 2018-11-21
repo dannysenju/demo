@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>greenapps</title>
+        <title>#{facesContext.externalContext.initParameterMap['tituloApp']}</title>
         <h:outputStylesheet library="css" name="tabler.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
         <h:outputStylesheet library="css" name="login.css"/>
@@ -22,12 +22,53 @@
                     <div class="container" style="height: 40px;">
                         <div class="d-flex" style="margin-top: -10px;">
                             <a class="header-brand mt-1">
-                                <h:graphicImage library="images" value="/resources/images/logo.png" style="width: 150px; animation: zoomIn 5s normal infinite;"/>
+                                <h:graphicImage library="images" value="/resources/images/logo.png" styleClass="animated-title-img-pass"/>
                             </a>
                             <div class="d-flex order-lg-2 ml-auto mt-1">
-                                <div class="nav-item d-none d-md-flex">
-                                    <a href="https://www.google.com" style="color: #3C9914; border-color: #3C9914; animation: swing 1s linear infinite;"
-                                       class="btn btn-sm btn-outline-primary" target="_blank">Visítenos</a>
+                                <div class="nav-item d-none d-md-flex dropdown">
+                                    <a href="javascript:void(0)"  id="btn-contact" class="btn btn-sm btn-outline-primary animated-contact" target="_blank"
+                                       data-toggle="dropdown" aria-expanded="false" onmouseover="showContactInfo()">
+                                        Contáctenos
+                                    </a>
+                                    <div id="menu-contact"
+                                         class="contact align-items-center card card-profile dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" >
+                                        <div class="card-header" style="background-image: url('/demo/resources/images/contact.jpg');">
+                                            <div class="card-options">
+                                                <a href="javascript:void(0)" class="card-options-remove" data-toggle="card-remove" style="color: #fff;" onclick="hideContactInfo()">
+                                                    <i class="fe fe-x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <img class="card-profile-img" src="/demo/resources/images/contact_2.png" style="background: #ffffff8f;"/>
+                                            <h3 class="mb-3" style="color: #3C991;">#{common.nameCompany}</h3>
+                                            <p class="mb-4">
+                                                #{common.slogan}
+                                            </p>
+                                            <button class="btn btn-outline-primary btn-sm">
+                                                <span class="fa fa-twitter"></span> Follow
+                                            </button>
+
+                                            <ul class="social-links list-inline mb-0 mt-2">
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="1234567890"><i class="fa fa-phone"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="@skypename"><i class="fa fa-skype"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        
+
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +79,30 @@
                     <ui:insert name="contentArea" />
                 </div>
             </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row align-items-center flex-row-reverse">
+                        <div class="col-auto ml-lg-auto">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <ul class="list-inline list-inline-dots mb-0">
+                                        <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
+                                        <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Visítenos</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                            Copyright © 2018 <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">greenapps.co</a> #{common.derechosGreen}.
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
+
     </h:body>
 </html>
 

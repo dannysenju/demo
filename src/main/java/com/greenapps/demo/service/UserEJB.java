@@ -144,6 +144,17 @@ public class UserEJB {
         }
         return listResult;
     }
+    
+    public List<Usuario> getAllUsers() {
+        List<Usuario> listAll = em.createNamedQuery("Usuario.findAll", Usuario.class).getResultList();
+        List<Usuario> listResult = new ArrayList<>();
+        for (Usuario usuario : listAll) {
+            if (!usuario.getRol().equals("ADMIN")) {
+                listResult.add(usuario);
+            }
+        }
+        return listResult;
+    }
 
     public boolean assignModules(Usuario userModule, DualListModel<Modulo> modules) {
 
@@ -173,5 +184,18 @@ public class UserEJB {
         return countInserts > 0;
 
     }
+
+    public boolean deleteUser(Usuario u) {
+        Query q = em.createQuery("Update Usuario u SET u.activo = 0 WHERE u.idusuario= :id")
+                .setParameter("id", u.getIdusuario());
+        return q.executeUpdate() > 0;
+    }
+    
+    public boolean activateUser(Usuario u) {
+        Query q = em.createQuery("Update Usuario u SET u.activo = 1 WHERE u.idusuario= :id")
+                .setParameter("id", u.getIdusuario());
+        return q.executeUpdate() > 0;
+    }
+    
 
 }

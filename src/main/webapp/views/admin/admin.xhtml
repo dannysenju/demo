@@ -6,7 +6,6 @@
       xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
     <ui:composition template="/views/templates/menu-layout.xhtml">
         <ui:define name="bodyContent">
             <c:if test="#{loginBean.rol eq 'ADMIN'}">
@@ -31,10 +30,10 @@
                     </div>
                     <div class="col-lg-9">
                         <p:accordionPanel id="menu-admin" activeIndex="null">
-                            <p:tab title="Crear Usuario" titletip="clic para entrar" titleStyleClass="card">
+                            <p:tab title="#{common.createUser}" titletip="#{common.tooltipClic}" titleStyleClass="card">
                                 <h:form id="create-user-form">
                                     <div class="card-header" id="create-user-header">
-                                        <h6>Datos básicos</h6>
+                                        <h6>#{common.basicData}</h6>
                                     </div>
                                     <div class="card-body" id="create-user-body">
                                         <p:messages id="msj-create-user-form" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
@@ -249,28 +248,24 @@
                                                 <label class="form-label">Seleccionar Módulos:</label>
                                                 <p:pickList id="pickList" value="#{adminBean.modules}" converter="moduloPickConverter"
                                                             var="module" itemLabel="#{module.nombre}" itemValue="#{module}" />
-
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="card-footer text-right">
                                         <div class="d-flex">
                                             <p:commandButton id="moduleSubmit" value="Asignar Módulos" action="#{adminBean.assignModules()}"
                                                              update="@form, pickList"  styleClass="btn btn-primary ml-auto btn-hidden-prime"/>
                                         </div>
-
                                     </div>
                                 </h:form>
                             </p:tab>
-                            <p:tab title="Dar de baja" titletip="clic para entrar" titleStyleClass="card">
+                            <p:tab title="Dar de Baja/Alta " id="delete-activate" titletip="clic para entrar" titleStyleClass="card">
                                 <h:form id="delete-user">
-
-                                    <p:messages id="msj-delete" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
-
+                                    <p:tooltip />
+                                    <p:messages id="msj-delete" closable="true" globalOnly="false" autoUpdate="false" showIcon="false" showDetail="true"/>
                                     <p:dataGrid var="user" value="#{adminBean.listUsers}" columns="3" layout="grid" styleClass="card-body div-hidden-prime" paginatorPosition="bottom"
                                                 emptyMessage="No hay usuarios registrados en la aplicación" currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}"
-                                                rows="12" paginator="true" id="users" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                rows="6" paginator="true" id="users" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                 rowsPerPageTemplate="6,12,16">
 
                                         <f:facet name="header">
@@ -278,10 +273,10 @@
                                                 Listado de usuarios
                                             </h6>
                                         </f:facet>
-                                        <div class="card">
+                                        <div class="card" style="border-left: #{user.activo eq 0 ? '3px solid #cd201f !important; background: #868e9647; color: #000;' : ''};">
                                             <div class="row">
                                                 <div class="col-sm-4 ml-4 mt-2 mb-0 mr-0">
-                                                    <span class="avatar avatar-xxl" >
+                                                    <span class="avatar avatar-xxl" style="animation: tada 2s linear infinite;" >
                                                         <o:graphicImage styleClass="avatar avatar-xxl" id="delete-profile" value="#{imageUserBean.getImage(user.idusuario)}" rendered="#{user.imagen ne null}"
                                                                         lastModified="#{userBean.lastModified}"/>
 
@@ -292,7 +287,7 @@
                                                 <div class="col-sm-4 mt-6">
                                                     <div class="media-body">
                                                         <h6 class="m-0">#{user.username}</h6>
-                                                        <p class="text-muted m-0">Rol: #{user.rol}</p>
+                                                        <p class="text-muted m-0" style="color: #{user.activo eq 0 ? '#000 !important;' : ''};">Rol: #{user.rol}</p>
                                                     </div>
 
                                                 </div>
@@ -300,19 +295,68 @@
                                                     <div class="media-body">
                                                         <ul class="social-links list-inline mb-0 mt-6">
                                                             <li class="list-inline-item">
-                                                                <a class="delete-icon" title="Dar de baja" data-toggle="tooltip" data-original-title="Eliminar">
-                                                                    <i class="fas fa-user-times"></i>
-                                                                </a>    
+                                                                <p:commandButton styleClass="delete-icon" title="Dar de baja" id="select-delete" onclick="PF('dlgDelete').show();"
+                                                                                 icon="fa fa-trash" rendered="#{user.activo eq 1}">
+                                                                    <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
+                                                                </p:commandButton>
+                                                                <p:commandButton styleClass="activate-icon" title="Activar Usuario" id="select-activate" onclick="PF('dlgActive').show();"
+                                                                                 icon="fa fa-power-off" rendered="#{user.activo eq 0}">
+                                                                    <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
+                                                                </p:commandButton>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p class="text-muted ml-2 mb-1 mt-0">#{user.nombreCompleto}</p>
+                                            <p class="text-muted ml-2 mb-1 mt-0" style="color: #{user.activo eq 0 ? '#000 !important;' : ''};">
+                                                #{user.nombreCompleto}</p>
                                         </div>    
 
                                     </p:dataGrid>
+                                    <p:dialog header="Eliminar Usuario" widgetVar="dlgDelete" minHeight="135" draggable="false" height="135" 
+                                              hideEffect="explode" showEffect="explode" showHeader="false" closable="false" minimizable="false" modal="true"
+                                              resizable="false" >
 
+                                        <div class="card-body">
+                                            <h3 class="text-center" style="margin: auto;">
+                                                Esta seguro de eliminar este usuario?
+                                            </h3>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <div class="card-options text-center">
+                                                <a href="#" class="btn btn-danger btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="confirmDialog()">SI
+                                                    <i class="far fa-trash-alt"></i>
+                                                    <p:remoteCommand name="confirmDeleteUser" action="#{adminBean.deleteUser(adminBean.userToDelete)}" update="@form"/>
+                                                </a>
+                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgDelete').hide();">NO
+                                                    <i class="fas fa-undo-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </p:dialog>
+                                    <p:dialog header="Activar Usuario" widgetVar="dlgActive" minHeight="135" draggable="false" height="135" 
+                                              hideEffect="explode" showEffect="explode" showHeader="false" closable="false" minimizable="false" modal="true"
+                                              resizable="false" >
+
+                                        <div class="card-body">
+                                            <h3 class="text-center" style="margin: auto;">
+                                                Esta seguro de activar este usuario?
+                                            </h3>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <div class="card-options text-center">
+                                                <a href="#" class="btn btn-success btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="activate()">SI
+                                                    <i class="fas fa-power-off"></i>
+                                                    <p:remoteCommand name="confirmActivateUser" action="#{adminBean.activateUser(adminBean.userToDelete)}" update="@form"/>
+                                                </a>
+                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgActive').hide();">NO
+                                                    <i class="fas fa-undo-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </p:dialog> 
                                 </h:form>
                             </p:tab>
                         </p:accordionPanel>

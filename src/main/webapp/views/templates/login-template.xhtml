@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>greenapps</title>
+        <title>#{facesContext.externalContext.initParameterMap['tituloApp']}</title>
         <h:outputStylesheet library="css" name="login.css"/>
         <h:outputStylesheet library="css" name="color.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
@@ -17,21 +17,24 @@
         <div id="container">
             <div id="content">
                 <div class="login-title">
-                    <h1 style="animation: tada 2s linear 4;">Bienvenido</h1>
+                    <h1 class="animated-title">#{login.welcome}</h1>
                     <span> 
-                        <i class="fas fa-leaf"></i>Powered by:
-                        <h:graphicImage styleClass="mt-1" id="img-log" library="images" style="animation: rubberBand 5s normal infinite; width: 10rem;"
-                            value="/resources/images/title.png" />
+                        <i class="fas fa-leaf"></i>#{login.poweredBy}
+                        <h:graphicImage styleClass="mt-1 animated-title-img" id="img-log" library="images"
+                                        value="/resources/images/title_ok.png" />
                     </span>
                 </div>
                 <div class="card-login" style="animation: lightSpeedIn 1s linear 1;">
                     <div class="form-login">
-                        <ui:insert name="contentArea" />
+                        <ui:insert name="contentArea"/>
                     </div>
-                    <div class="cta"><a href="login/changePass.xhtml">Olvidaste tu contraseña?</a></div>
+                    <div class="cta"><a href="login/changePass.xhtml">#{login.forgot}</a></div>
                 </div>
             </div>
         </div>
+        <h:outputLabel styleClass="footer" 
+                       value="#{facesContext.externalContext.initParameterMap['version']}, #{common.derechosGreen}">
+        </h:outputLabel>
     </h:body>
 </html>
 

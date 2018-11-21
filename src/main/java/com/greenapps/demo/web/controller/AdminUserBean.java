@@ -12,18 +12,19 @@ import com.greenapps.demo.service.UserEJB;
 import com.greenapps.demo.service.utils.exception.BusinessAppException;
 import com.greenapps.demo.service.utils.security.utils.UtilsEncrypt;
 import com.greenapps.demo.web.general.GeneralBean;
+import com.greenapps.demo.web.general.UtilsMessage;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.DualListModel;
 
 /**
@@ -41,6 +42,7 @@ public class AdminUserBean extends GeneralBean implements Serializable {
     private DualListModel<Modulo> modules;
     private List<Usuario> listUsers;
     private Usuario userModule;
+    private Usuario userToDelete;
 
     @EJB // pone a dispocision Servicio
     UserEJB userEJB;
@@ -59,14 +61,18 @@ public class AdminUserBean extends GeneralBean implements Serializable {
             String idString = context.getExternalContext().getSessionMap().get("userId").toString();
             newUser = new Usuario();
             fullNameUser = userEJB.getFullName(Integer.parseInt(idString));
-            listUsers = userEJB.getAllActiveUsers();
+            listUsers = initListUsers();
             userModule = listUsers.size() > 0 ? listUsers.get(0) : new Usuario();
             initPickList(userModule.getModuloList());
 
         } catch (BusinessAppException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Acceso denegado contacte al administrador", null));
+            addErrorMessage(UtilsMessage.translate("accessDenied", "general.general", "administración"));
             navigate("/views/error/not-access.xhtml");
         }
+    }
+
+    private List initListUsers() {
+        return userEJB.getAllUsers();
     }
 
     private void initPickList(List<Modulo> moduleTarget) {
@@ -76,36 +82,55 @@ public class AdminUserBean extends GeneralBean implements Serializable {
     }
 
     public void createUser() {
-        FacesContext context = FacesContext.getCurrentInstance();
-
         this.newUser.setPassword(UtilsEncrypt.getInstance().encryptPassword(pass));
-
         try {
             userEJB.createUser(this.newUser);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Creación exitosa de: " + this.newUser.getNombreCompleto(), null));
-
+            addInfoMessage(UtilsMessage.translate("create", "general.general", Usuario.class.getSimpleName() + ": " + this.newUser.getNombreCompleto()));
             this.newUser = new Usuario();
-
         } catch (SQLException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ocurrio un Error al momento de crear el usuario, contactese con el administrador", null));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", "Crear"));
         }
     }
 
     public void assignModules() {
-        FacesContext context = FacesContext.getCurrentInstance();
         if (userEJB.assignModules(this.userModule, this.modules)) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Modulos asignados exitosamente a: " + this.userModule.getNombreCompleto(), null));
-            initPickList(userEJB.getUserById(this.userModule.getIdusuario()).getModuloList());
+            addInfoMessage(UtilsMessage.translate("assignedModule", "general.general", this.userModule.getNombreCompleto()));
         } else {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No se agrego ningún módulo", null));
-            initPickList(userEJB.getUserById(this.userModule.getIdusuario()).getModuloList());
+            addErrorMessage(UtilsMessage.translate("error", "general.general", "Asignar módulos"));
         }
+        initPickList(userEJB.getUserById(this.userModule.getIdusuario()).getModuloList());
 
     }
 
     public void changeUserSelection(ValueChangeEvent evt) {
         Usuario u = (Usuario) evt.getNewValue();
         initPickList(u.getModuloList());
+    }
+
+    public void deleteUser(Usuario u) {
+
+        String userInactive = u.getNombreCompleto();
+        RequestContext.getCurrentInstance().execute("PF('dlgDelete').hide();");
+        if (userEJB.deleteUser(u)) {
+            addWarnMessage(UtilsMessage.translate("delete", "general.general", userInactive));
+            listUsers = initListUsers();
+        } else {
+            addErrorMessage(UtilsMessage.translate("error", "general.general", "Eliminar"));
+        }
+
+    }
+    
+    public void activateUser(Usuario u) {
+
+        String userInactive = u.getNombreCompleto();
+        RequestContext.getCurrentInstance().execute("PF('dlgActivate').hide();");
+        if (userEJB.activateUser(u)) {
+            addInfoMessage(UtilsMessage.translate("activate", "general.general", userInactive));
+            listUsers = initListUsers();
+        } else {
+            addErrorMessage(UtilsMessage.translate("error", "general.general", "Activar"));
+        }
+
     }
 
     public Usuario getUser(Integer id) {
@@ -168,4 +193,11 @@ public class AdminUserBean extends GeneralBean implements Serializable {
         this.userModule = userModule;
     }
 
+    public Usuario getUserToDelete() {
+        return userToDelete;
+    }
+
+    public void setUserToDelete(Usuario userToDelete) {
+        this.userToDelete = userToDelete;
+    }
 }

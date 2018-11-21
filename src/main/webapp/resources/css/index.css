@@ -464,7 +464,6 @@ body {
     border: 0 !important;
     margin: 0 auto;
     box-shadow: none !important;
-    margin-left: 30% !important;
     display: table;
 }
 
@@ -498,6 +497,7 @@ body {
     border-bottom: 1px solid #B8EFA0;
     border-left: 3px solid #f1c40f;
     box-shadow: none !important;
+    border-top: 0 !important;
 }
 
 #menu-admin .card-footer {
@@ -520,12 +520,205 @@ body {
     background: #cd201f !important; 
     color: #fff !important;  
     cursor: pointer; 
-    animation: tada 2s linear infinite;
+    animation: bounceIn 2s normal infinite;
+    
 }
 
-#menu-admin\:delete-user\:users .social-links li a {
+.activate-icon{
+    background: #7bd235 !important; 
+    color: #fff !important;  
+    cursor: pointer; 
+    animation: bounceIn 2s normal infinite;
+}
+
+#menu-admin\:delete-user\:users .social-links li button {
+    border-radius: 50% !important;
+    color: #fff !important;
+    display: inline-block !important;
+    text-align: center !important;
     height: 2.5rem !important;
     width: 2.5rem !important;
     line-height: 2.5rem !important;
-    
+    border: 0 !important;
+    text-shadow: none !important;
+    font-weight: 300 !important;
+    box-shadow: none !important;
+}
+
+.block-div {
+    width: 100px;
+}
+.loading {
+    position: relative;
+    padding-left: 0 !important;
+}
+.loading-bar {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+    background-color: #3498db;
+    animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+    background-color: #c0392b;
+    animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+    background-color: #f1c40f;
+    animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+    background-color: #27ae60;
+    animation-delay: .27s;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1, 2.2);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-page {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-page:hover {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #797979 !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom .ui-state-active, .ui-paginator-page .ui-state-active {
+    color: #000;
+    background:  #dddfe2 !important;
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-first{
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-first:hover {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #f5f7fb !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-next{
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-next:hover {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #f5f7fb !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-prev{
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-prev:hover {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #f5f7fb !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-last{
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-last:hover {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #f5f7fb !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+}
+
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-rpp-options {
+    font-weight: bold;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
+    cursor: pointer;
+}
+#menu-admin\:delete-user\:users_paginator_bottom .ui-paginator-rpp-options:hover {
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #f5f7fb !important;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 40, 100, 0.35) !important;
+    border-radius: 3px !important;
+    color: #000;
 }

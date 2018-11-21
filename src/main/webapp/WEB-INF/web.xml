@@ -18,6 +18,15 @@
         <param-value>2100000</param-value>
     </context-param>
     
+    <context-param>
+        <param-name>version</param-name>
+        <param-value>GreenApps Demo V 1.0.0 (21 de Noviembre de 2018). Copyright © 2018</param-value>
+    </context-param>
+    <context-param>
+        <param-name>tituloApp</param-name>
+        <param-value>Demo</param-value>
+    </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

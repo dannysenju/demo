@@ -20,7 +20,7 @@
     xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
     <!-- The datasource is bound into JNDI at this location. We reference
         this in META-INF/persistence.xml -->
-    <datasource jndi-name="java:jboss/datasources/DemoDS"
+<!--    <datasource jndi-name="java:jboss/datasources/DemoDS"
         pool-name="demo" enabled="true" use-java-context="true">
         <connection-url>${enc.db.url}</connection-url>
         <driver>postgresql</driver>		
@@ -29,16 +29,16 @@
             <password>${enc.db.password}</password>
         </security>
 	
-    </datasource>
+    </datasource>-->
     
-<!--    <datasource jndi-name="java:jboss/datasources/DemoDS" pool-name="demo"  use-java-context="true">
+    <datasource jndi-name="java:jboss/datasources/DemoDS" pool-name="demo"  use-java-context="true">
         <connection-url>jdbc:postgresql://localhost:5432/demos</connection-url>
         <driver>postgresql</driver>		
         <security>
             <user-name>demos</user-name>
             <password>demos</password>
         </security>
-    </datasource>-->
+    </datasource>
     
 </datasources>
 
