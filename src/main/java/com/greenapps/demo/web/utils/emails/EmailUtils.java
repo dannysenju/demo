@@ -26,8 +26,9 @@ public class EmailUtils {
         try {
             Email email = new SimpleEmail();
             email.setHostName("smtp.googlemail.com");
+            email.setSslSmtpPort("465");
             email.setSmtpPort(465);
-            email.setAuthenticator(new DefaultAuthenticator(Constant.NAME_MAIL, Constant.getInstance().getPASSWORD_EMAIL()));
+            email.setAuthentication(Constant.NAME_MAIL, Constant.getInstance().getPASSWORD_EMAIL());
             email.setSSLOnConnect(true);
             email.setFrom(Constant.USERNAME_EMAIL);
             email.setSubject(msj);
