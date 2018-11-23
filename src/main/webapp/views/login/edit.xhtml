@@ -22,10 +22,10 @@
                                     </span>
                                     <div class="media-body">
                                         <h1 class="m-0">#{userBean.fullNameUser}</h1>
-                                        <p class="text-muted mb-0">Rol: #{loginBean.rol}</p>
-                                        <p class="text-muted mb-0">Nombre usuario: #{userBean.usuario.username}</p>
+                                        <p class="text-muted mb-0">#{login.rol} #{loginBean.rol}</p>
+                                        <p class="text-muted mb-0">#{login.username} #{userBean.usuario.username}</p>
                                         <ul class="social-links list-inline mb-0 mt-2">
-                                            
+
                                             <li class="list-inline-item">
                                                 <a href="javascript:void(0)" title="#{userBean.usuario.telefono}" data-toggle="tooltip" data-original-title="#{userBean.usuario.telefono}"><i class="fe fe-phone"></i></a>
                                             </li>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Datos Básicos</h3>
+                                <h3 class="card-title">#{login.basicData}</h3>
 
                             </div>
                             <div class="card-body">
@@ -54,11 +54,11 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">Nombre Completo</label>
+                                            <label class="form-label">#{login.fullName}</label>
 
                                             <p:inputText styleClass="form-control input-hidden-prime" id="edit-fullname" 
                                                          value="#{userBean.usuario.nombreCompleto}" required="true"
-                                                         requiredMessage="Se requiere Nombre Completo">
+                                                         requiredMessage="#{common.requiredField}">
                                                 <p:ajax event="keyup" update="msj-fullname"/>
                                             </p:inputText>
                                             <p:message id="msj-fullname" for="edit-fullname" styleClass="invalid" display="text"/>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Nombre de Usuario</label>
+                                    <label class="form-label">#{login.userName}</label>
 
                                     <div class="input-group">
                                         <span class="input-group-prepend" id="basic-addon1">
@@ -76,17 +76,16 @@
                                         </span>
                                         <p:inputText styleClass="form-control input-hidden-prime" id="edit-username" 
                                                      value="#{userBean.usuario.username}" required="true"
-                                                     requiredMessage="Se requiere usuario">
+                                                     requiredMessage="#{common.requiredField}">
                                             <p:ajax event="keyup" update="msj-username"/>
                                         </p:inputText>
                                     </div>
                                     <p:message id="msj-username" for="edit-username" styleClass="invalid" display="text"/>
                                 </div>
-
                                 <div class="form-footer">
                                     <p:commandButton styleClass="btn btn-primary btn-block btn-hidden-prime"
                                                      id="updateButton" 
-                                                     value="Actualizar" 
+                                                     value="#{common.updateBtn}" 
                                                      action="#{userBean.updateBasicData()}"
                                                      update="@form, msj-data-basic" />
                                 </div>
@@ -101,7 +100,7 @@
 
                                 <div class="input-group-append">
                                     <span class="input-group-prepend" id="basic-addon-camera">
-                                        <i class="fe fe-camera"> <span>Seleccione Foto de Perfil</span>
+                                        <i class="fe fe-camera"> <span>#{login.selectPhoto}</span>
                                         </i>
                                     </span>    
                                 </div>
@@ -112,20 +111,23 @@
                                 <div class="col-lg-12">
                                     <div class="media">
                                         <div class="input-group">
-                                            <div class="form-label"><span class="form-required">* Peso máximo: 2MB</span></div>
+                                            <div class="form-label"><span class="form-required">#{common.maxWeight}</span></div>
                                             <div class="file">
                                                 <h:form id="form-edit-image" styleClass="card" enctype="multipart/form-data">
                                                     <p:messages closable="true" globalOnly="false" id="edit-image-msj" showIcon="false" autoUpdate="false"/>
                                                     <p:fileUpload mode="advanced" id="edit-image"
                                                                   styleClass="file-input"
-                                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="1" fileLimitMessage="Solo puede subir una imagen"
-                                                                  invalidFileMessage="Extensión no soportada" invalidSizeMessage="Excedió el tamaño minimo permitido"
-                                                                  sizeLimit="2000000" uploadLabel="Cargar Foto" 
-                                                                  cancelLabel="Cancelar" update="@all"
-                                                                  label="Seleccionar" onstart="PF('blockCode').show();"
+                                                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" fileLimit="1" fileLimitMessage="#{login.limitImage}"
+                                                                  invalidFileMessage="#{login.extNotSupported}" 
+
+                                                                  invalidSizeMessage="#{common.limitSize}"
+                                                                  sizeLimit="1000000" uploadLabel="#{common.loadPhoto}" 
+                                                                  cancelLabel="#{common.cancelBtn}" update="@all"
+                                                                  label="#{common.selectBtn}" onstart="PF('blockCode').show();"
                                                                   value="#{userBean.uploadedPicture}"
-                                                                  fileUploadListener="#{userBean.fileUploadListener}"
-                                                                  />
+                                                                  fileUploadListener="#{userBean.fileUploadListener}">
+                                                    </p:fileUpload>
+
                                                     <p:message id="msj-image" for="edit-image" styleClass="invalid" display="text"/>
                                                     <p:blockUI block="entiredPage" trigger="edit-image" widgetVar="blockCode" styleClass="block-div">
                                                         <div class="row">
@@ -139,7 +141,7 @@
                                                             <div class="col-2"></div>
                                                         </div>
                                                         <div class="row">
-                                                            Espere Por favor
+                                                            #{common.wait}
                                                         </div>
                                                     </p:blockUI>
                                                 </h:form>
@@ -152,14 +154,14 @@
                     </div>
                     <h:form id="form-edit-user" class="card">
                         <div class="card-body">
-                            <h3 class="card-title">Editar Contraseña</h3>
+                            <h3 class="card-title">#{login.editPass}</h3>
                             <p:messages closable="true" autoUpdate="false" globalOnly="false" showDetail="false"/>
                             <div class="row">
 
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-8">
 
-                                    <label class="form-label">Contraseña Anterior<span class="form-required">*</span></label>
+                                    <label class="form-label">#{login.afterPass}<span class="form-required">*</span></label>
                                     <div class="input-group div-form-validate">
                                         <span class="input-group-prepend" id="basic-addon1">
                                             <label class="input-group-text fancy-checkbox">
@@ -170,7 +172,7 @@
                                         </span>
                                         <p:password maxlength="20" placeholder="Contraseña" 
                                                     styleClass="form-control input-hidden-prime" id="edit-oldPass" 
-                                                    value="#{userBean.oldPass}" required="true" requiredMessage="Se requiere Contraseña Anterior">
+                                                    value="#{userBean.oldPass}" required="true" requiredMessage="#{common.requiredField}">
                                             <p:ajax event="keyup" update="msj-oldPass"/>
                                         </p:password>
 
@@ -183,7 +185,7 @@
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-8">
 
-                                    <label class="form-label">Contraseña Nueva<span class="form-required">*</span></label>
+                                    <label class="form-label">#{login.newPass}<span class="form-required">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-prepend "  id="basic-addon1">
                                             <label class="input-group-text fancy-checkbox">
@@ -193,9 +195,13 @@
                                             </label>
                                         </span>
                                         <p:password maxlength="20" styleClass="form-control input-hidden-prime"
-                                                    id="password" value="#{userBean.pass}" required="true" requiredMessage="Se requiere contraseña Nueva"
-                                                    placeholder="Contraseña" feedback="true" promptLabel="nivel de protección" weakLabel="débil"
-                                                    goodLabel="normal" strongLabel="fuerte">
+                                                    id="password" value="#{userBean.pass}" required="true" 
+                                                    requiredMessage="#{common.requiredField}"
+                                                    placeholder="#{login.placeHolderPass}" feedback="true" 
+                                                    promptLabel="#{login.protectionLevel}" 
+                                                    weakLabel="#{login.weak}"
+                                                    goodLabel="#{login.normal}" 
+                                                    strongLabel="#{login.strong}">
                                             <f:validator validatorId="valPass" />
                                             <f:validateLength minimum="5" maximum="20"  />
                                             <f:attribute name="confirm" value="#{confirmPassword.submittedValue}" />
@@ -210,7 +216,7 @@
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-8">
-                                    <label class="form-label">Confirmar Contraseña<span class="form-required">*</span></label>
+                                    <label class="form-label">#{login.confirmPass}<span class="form-required">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-prepend" id="basic-addon1">
                                             <label class="input-group-text fancy-checkbox">
@@ -220,7 +226,7 @@
                                             </label>
                                         </span>
                                         <p:password id="confirm" binding="#{confirmPassword}" maxlength="20" styleClass="form-control input-hidden-prime"
-                                                    placeholder="Confirmar Contraseña" requiredMessage="Se requiere contraseña Nueva" required="true">
+                                                    placeholder="#{login.placeHolderConfirmPass}" requiredMessage="#{common.requiredField}" required="true">
                                             <f:ajax event="keyup" execute="password confirm" render="m_password m_confirm" />
                                         </p:password>
 
@@ -234,7 +240,7 @@
                             <div class="d-flex">
                                 <p:commandButton styleClass="btn btn-primary ml-auto btn-hidden-prime"
                                                  id="updateButton" 
-                                                 value="Actualizar Contraseña" 
+                                                 value="#{common.updateBtn}" 
                                                  action="#{userBean.updatePassword()}"
                                                  update="@form"/>
                             </div>

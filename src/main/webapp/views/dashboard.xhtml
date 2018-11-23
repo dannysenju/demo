@@ -17,7 +17,7 @@
         <p:dialog header="Expiro la Sesión" resizable="false" styleClass="modal-login" id="dlg-expire"
                   widgetVar="idleDialog" modal="true" width="400">  
             <div class="modal-body text-center">
-                <h3>Reconectese!!!</h3>
+                <h3>#{common.reconnect}</h3>
                 <hr/>
                 <input id="confirmBackToLogin" type="button" value="ir a Login" class="btn btn-primary"
                        onclick="window.location = '#{facesContext.externalContext.requestContextPath}/views/logOn.xhtml';" />
@@ -30,7 +30,7 @@
         <div class="container">
             <div class="page-header">
                 <h1 class="page-title">
-                    SIGRE WEB
+                    #{facesContext.externalContext.initParameterMap['tituloApp']}
                 </h1>
             </div>
 

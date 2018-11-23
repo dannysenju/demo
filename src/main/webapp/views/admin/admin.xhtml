@@ -40,7 +40,7 @@
                                         <fieldset class="form-fieldset">
                                             <div class="row">
                                                 <div class="col-lg-4">
-                                                    <label class="form-label">Nombre de Usuario</label>
+                                                    <label class="form-label">#{login.userName}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <span class="input-group-text">
@@ -48,8 +48,8 @@
                                                             </span>
                                                         </span>
                                                         <p:inputText styleClass="form-control input-hidden-prime" id="edit-username" 
-                                                                     value="#{adminBean.newUser.username}" required="true" placeholder="Nombre de usuario"
-                                                                     requiredMessage="Se requiere usuario">
+                                                                     value="#{adminBean.newUser.username}" required="true" placeholder="#{login.userName}"
+                                                                     requiredMessage="#{common.requiredField}">
                                                             <f:validator binding="#{valUser}"/>
                                                             <p:ajax event="keyup" update="msj-username"/>
                                                         </p:inputText>
@@ -58,7 +58,7 @@
 
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <label class="form-label">Nombre Completo</label>
+                                                    <label class="form-label">#{login.fullName}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <span class="input-group-text">
@@ -66,8 +66,8 @@
                                                             </span>
                                                         </span>
                                                         <p:inputText styleClass="form-control input-hidden-prime" id="create-fullname" 
-                                                                     value="#{adminBean.newUser.nombreCompleto}" required="true" placeholder="Nombre Completo"
-                                                                     requiredMessage="Se requiere nombre completo">
+                                                                     value="#{adminBean.newUser.nombreCompleto}" required="true" placeholder="#{login.fullName}"
+                                                                     requiredMessage="#{common.requiredField}">
                                                             <f:validator binding="#{valUser}"/>
                                                             <p:ajax event="keyup" update="msj-fullname"/>
                                                         </p:inputText>
@@ -80,7 +80,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
 
-                                                    <label class="form-label">Contraseña Nueva<span class="form-required">*</span></label>
+                                                    <label class="form-label">#{login.newPass}<span class="form-required">*</span></label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend "  id="basic-addon1">
                                                             <label class="input-group-text fancy-checkbox">
@@ -90,9 +90,9 @@
                                                             </label>
                                                         </span>
                                                         <p:password maxlength="20" styleClass="form-control input-hidden-prime"
-                                                                    id="password" value="#{adminBean.pass}" required="true" requiredMessage="Se requiere contraseña Nueva"
-                                                                    placeholder="Contraseña" feedback="true" promptLabel="nivel de protección" weakLabel="débil"
-                                                                    goodLabel="normal" strongLabel="fuerte">
+                                                                    id="password" value="#{adminBean.pass}" required="true" requiredMessage="#{common.requiredField}"
+                                                                    placeholder="#{login.placeHolderPass}" feedback="true" promptLabel="#{login.protectionLevel}" weakLabel="#{login.weak}"
+                                                                    goodLabel="#{login.normal}" strongLabel="#{login.strong}">
                                                             <f:validator validatorId="valPass" />
                                                             <f:validateLength minimum="5" maximum="20"  />
                                                             <f:attribute name="confirm" value="#{confirmPassword.submittedValue}" />
@@ -105,7 +105,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label">Confirmar Contraseña<span class="form-required">*</span></label>
+                                                    <label class="form-label">#{login.confirmPass}<span class="form-required">*</span></label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <label class="input-group-text fancy-checkbox">
@@ -115,7 +115,7 @@
                                                             </label>
                                                         </span>
                                                         <p:password id="confirm" binding="#{confirmPassword}" maxlength="20" styleClass="form-control input-hidden-prime"
-                                                                    placeholder="Confirmar Contraseña" requiredMessage="Se requiere contraseña Nueva" required="true">
+                                                                    placeholder="#{login.confirmPass}" requiredMessage="#{common.requiredField}" required="true">
                                                             <f:ajax event="keyup" execute="password confirm" render="m_password m_confirm" />
                                                         </p:password>
 
@@ -126,7 +126,7 @@
                                             <div style="padding-bottom: 10px;"/>
                                             <div class="row">
                                                 <div class="col-lg-5">
-                                                    <label class="form-label">Rol</label>
+                                                    <label class="form-label">#{login.rol}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <span class="input-group-text">
@@ -135,18 +135,19 @@
                                                         </span>
 
                                                         <p:selectOneMenu id="console" value="#{adminBean.newUser.rol}" required="true"
-                                                                         requiredMessage="El rol es obligatorio"
+                                                                         requiredMessage="#{common.requiredField}"
                                                                          styleClass="form-control custom-select select-hidden-prime">
-                                                            <f:selectItem itemLabel="Seleccione Un rol" itemValue="" />
-                                                            <f:selectItem itemLabel="Instructor" itemValue="INST" />
-                                                            <f:selectItem itemLabel="Funcionario" itemValue="FUNC" />
-                                                            <f:selectItem itemLabel="Secretari@" itemValue="SECR" />
+                                                            <f:selectItem itemLabel="#{common.selectItem}" itemValue="" />
+                                                            <f:selectItem itemLabel="#{rolMsg.rolLabel1}" itemValue="#{rolMsg.rolValue1}" />
+                                                            <f:selectItem itemLabel="#{rolMsg.rolLabel2}" itemValue="#{rolMsg.rolValue2}" />
+                                                            <f:selectItem itemLabel="#{rolMsg.rolLabel3}" itemValue="#{rolMsg.rolValue3}" />
+
                                                         </p:selectOneMenu>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-4">
-                                                    <label class="form-label">Email</label>
+                                                    <label class="form-label">#{common.email}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <span class="input-group-text">
@@ -154,7 +155,7 @@
                                                             </span>
                                                         </span>
                                                         <p:inputText styleClass="form-control input-hidden-prime" id="create-email" 
-                                                                     value="#{adminBean.newUser.email}" placeholder="Email@email.com">
+                                                                     value="#{adminBean.newUser.email}" placeholder="#{login.placeHolderEmail}">
                                                             <f:validator validatorId="valEmail"/>
                                                             <p:ajax event="keyup" update="email-msg"/>
                                                         </p:inputText>
@@ -162,7 +163,7 @@
                                                     <p:message id="email-msg" for="create-email" styleClass="invalid" display="text" />
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label class="form-label">Celular</label>
+                                                    <label class="form-label">#{common.phone}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-prepend" id="basic-addon1">
                                                             <span class="input-group-text">
@@ -170,7 +171,7 @@
                                                             </span>
                                                         </span>
                                                         <p:inputText styleClass="form-control input-hidden-prime" id="create-phone" 
-                                                                     value="#{adminBean.newUser.telefono}" placeholder="Telefono">
+                                                                     value="#{adminBean.newUser.telefono}" placeholder="#{common.placeHolderPhone}">
                                                             <p:ajax event="keyup" update="phone-msg"/>
                                                         </p:inputText>
                                                     </div>
@@ -183,7 +184,7 @@
                                         <div class="d-flex">
                                             <p:commandButton styleClass="btn btn-primary ml-auto btn-hidden-prime"
                                                              id="create-user" 
-                                                             value="Crear Usuario" 
+                                                             value="#{common.createBtn}" 
                                                              action="#{adminBean.createUser()}"
                                                              update="@form"
                                                              />
@@ -191,14 +192,14 @@
                                     </div>
                                 </h:form>
                             </p:tab>
-                            <p:tab title="Asignar módulos" titletip="clic para entrar" titleStyleClass="card">
+                            <p:tab title="#{common.asignModules}" titletip="#{common.tooltipClic}" titleStyleClass="card">
                                 <h:form id="form-user-module">
                                     <div class="card-body">
                                         <p:messages id="msj-asign-module" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-8">
-                                                <label class="form-label">Seleccione Usuario:</label>
+                                                <label class="form-label">#{common.selectUser}</label>
                                                 <div class="input-group">
                                                     <span class="input-group-prepend" id="basic-addon1">
                                                         <span class="input-group-text">
@@ -245,7 +246,7 @@
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-8">
-                                                <label class="form-label">Seleccionar Módulos:</label>
+                                                <label class="form-label">#{common.selectModules}</label>
                                                 <p:pickList id="pickList" value="#{adminBean.modules}" converter="moduloPickConverter"
                                                             var="module" itemLabel="#{module.nombre}" itemValue="#{module}" />
                                             </div>
@@ -259,18 +260,18 @@
                                     </div>
                                 </h:form>
                             </p:tab>
-                            <p:tab title="Dar de Baja/Alta " id="delete-activate" titletip="clic para entrar" titleStyleClass="card">
+                            <p:tab title="#{common.downUp}" id="delete-activate" titletip="#{common.tooltipClic}" titleStyleClass="card">
                                 <h:form id="delete-user">
                                     <p:tooltip />
                                     <p:messages id="msj-delete" closable="true" globalOnly="false" autoUpdate="false" showIcon="false" showDetail="true"/>
                                     <p:dataGrid var="user" value="#{adminBean.listUsers}" columns="3" layout="grid" styleClass="card-body div-hidden-prime" paginatorPosition="bottom"
-                                                emptyMessage="No hay usuarios registrados en la aplicación" currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}"
+                                                emptyMessage="#{common.emptyList}" currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}"
                                                 rows="6" paginator="true" id="users" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                 rowsPerPageTemplate="6,12,16">
 
                                         <f:facet name="header">
                                             <h6 class="text-center" style="padding-top: 10px; margin: auto;">
-                                                Listado de usuarios
+                                                #{common.userList}
                                             </h6>
                                         </f:facet>
                                         <div class="card" style="border-left: #{user.activo eq 0 ? '3px solid #cd201f !important; background: #868e9647; color: #000;' : ''};">
@@ -287,7 +288,7 @@
                                                 <div class="col-sm-4 mt-6">
                                                     <div class="media-body">
                                                         <h6 class="m-0">#{user.username}</h6>
-                                                        <p class="text-muted m-0" style="color: #{user.activo eq 0 ? '#000 !important;' : ''};">Rol: #{user.rol}</p>
+                                                        <p class="text-muted m-0" style="color: #{user.activo eq 0 ? '#000 !important;' : ''};">#{login.rol} #{user.rol}</p>
                                                     </div>
 
                                                 </div>
@@ -295,11 +296,11 @@
                                                     <div class="media-body">
                                                         <ul class="social-links list-inline mb-0 mt-6">
                                                             <li class="list-inline-item">
-                                                                <p:commandButton styleClass="delete-icon" title="Dar de baja" id="select-delete" onclick="PF('dlgDelete').show();"
+                                                                <p:commandButton styleClass="delete-icon" title="#{common.inactive}" id="select-delete" onclick="PF('dlgDelete').show();"
                                                                                  icon="fa fa-trash" rendered="#{user.activo eq 1}">
                                                                     <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
                                                                 </p:commandButton>
-                                                                <p:commandButton styleClass="activate-icon" title="Activar Usuario" id="select-activate" onclick="PF('dlgActive').show();"
+                                                                <p:commandButton styleClass="activate-icon" title="#{common.activate}" id="select-activate" onclick="PF('dlgActive').show();"
                                                                                  icon="fa fa-power-off" rendered="#{user.activo eq 0}">
                                                                     <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
                                                                 </p:commandButton>
@@ -313,23 +314,23 @@
                                         </div>    
 
                                     </p:dataGrid>
-                                    <p:dialog header="Eliminar Usuario" widgetVar="dlgDelete" minHeight="135" draggable="false" height="135" 
+                                    <p:dialog header="#{common.deleteUser}" widgetVar="dlgDelete" minHeight="135" draggable="false" height="135" 
                                               hideEffect="explode" showEffect="explode" showHeader="false" closable="false" minimizable="false" modal="true"
                                               resizable="false" >
 
                                         <div class="card-body">
                                             <h3 class="text-center" style="margin: auto;">
-                                                Esta seguro de eliminar este usuario?
+                                                #{common.areYouSure}
                                             </h3>
                                         </div>
 
                                         <div class="card-footer">
                                             <div class="card-options text-center">
-                                                <a href="#" class="btn btn-danger btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="confirmDialog()">SI
+                                                <a href="#" class="btn btn-danger btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="confirmDialog()">#{common.yes}
                                                     <i class="far fa-trash-alt"></i>
                                                     <p:remoteCommand name="confirmDeleteUser" action="#{adminBean.deleteUser(adminBean.userToDelete)}" update="@form"/>
                                                 </a>
-                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgDelete').hide();">NO
+                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgDelete').hide();">#{common.no}
                                                     <i class="fas fa-undo-alt"></i>
                                                 </a>
                                             </div>
@@ -341,17 +342,17 @@
 
                                         <div class="card-body">
                                             <h3 class="text-center" style="margin: auto;">
-                                                Esta seguro de activar este usuario?
+                                                #{common.areYouSure}
                                             </h3>
                                         </div>
 
                                         <div class="card-footer">
                                             <div class="card-options text-center">
-                                                <a href="#" class="btn btn-success btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="activate()">SI
+                                                <a href="#" class="btn btn-success btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="activate()">#{common.yes}
                                                     <i class="fas fa-power-off"></i>
                                                     <p:remoteCommand name="confirmActivateUser" action="#{adminBean.activateUser(adminBean.userToDelete)}" update="@form"/>
                                                 </a>
-                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgActive').hide();">NO
+                                                <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgActive').hide();">#{common.no}
                                                     <i class="fas fa-undo-alt"></i>
                                                 </a>
                                             </div>
@@ -366,11 +367,10 @@
             <c:if test="#{loginBean.rol ne 'ADMIN'}">
                 <div class="row text-center">
                     <div class="col-lg-12">
-                        <h1>NO TIENE PERMISOS EN ESTE MÓDULO...CONTÁCTESE CON EL ADMINISTRADOR</h1>
+                        <h1>#{common.denied}</h1>
                     </div>
                 </div>
             </c:if>
-
         </ui:define>
     </ui:composition>
 </html>

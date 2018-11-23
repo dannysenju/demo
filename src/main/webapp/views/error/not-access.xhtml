@@ -15,7 +15,7 @@
         <p:dialog header="Expiro la Sesión" resizable="false" styleClass="modal-login" id="dlg-expire"
                   widgetVar="idleDialog" modal="true" width="400">  
             <div class="modal-body text-center">
-                <h3>Reconectese!!!</h3>
+                <h3>#{common.reconnect}</h3>
                 <hr/>
                 <input id="confirmBackToLogin" type="button" value="ir a Login" class="btn btn-primary"
                        onclick="window.location = '#{facesContext.externalContext.requestContextPath}/views/logOn.xhtml';" />
@@ -26,13 +26,12 @@
 
     <ui:define name="bodyContent">
         <div class="container text-center">
-            <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i>Alerta</div>
-            <h1 class="h2 mb-3">Oops.. No tienes acceso a esta módulo...</h1>
-            <p class="h4 text-muted font-weight-normal mb-7">Por favor Contáctese con el administrador.</p>
+            <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i>#{common.alert}</div>
+            <h1 class="h2 mb-3">#{common.notAccess}</h1>
+            <p class="h4 text-muted font-weight-normal mb-7">#{common.contactAdmin}</p>
             <a class="btn btn-primary" href="javascript:history.back()">
-                <i class="fe fe-arrow-left mr-2"></i>ir atrás
+                <i class="fe fe-arrow-left mr-2">#{common.goBack}</i>
             </a>
         </div>
     </ui:define>
-
 </ui:composition>

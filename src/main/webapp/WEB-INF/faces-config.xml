@@ -19,6 +19,14 @@
             <base-name>com.greenapps.demo.message.login.login</base-name>
             <var>login</var>
         </resource-bundle>
+        <resource-bundle>    
+            <base-name>com.greenapps.demo.message.dashboard.menu</base-name>
+            <var>dash</var>
+        </resource-bundle>
+        <resource-bundle>    
+            <base-name>com.greenapps.demo.message.roles.rol</base-name>
+            <var>rolMsg</var>
+        </resource-bundle>
     </application>
     
 </faces-config>

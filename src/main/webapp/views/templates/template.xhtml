@@ -10,6 +10,7 @@
         <h:outputStylesheet library="css" name="dashboard.css"/>
         <h:outputStylesheet library="css" name="login.css"/>
         <h:outputStylesheet library="css" name="animate.css"/>
+        <h:outputStylesheet library="css" name="all.css"/>
         <h:outputScript name="login.js" library="js" target="body"/>
         <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
         <ui:insert name="headArea" />
@@ -28,7 +29,7 @@
                                 <div class="nav-item d-none d-md-flex dropdown">
                                     <a href="javascript:void(0)"  id="btn-contact" class="btn btn-sm btn-outline-primary animated-contact" target="_blank"
                                        data-toggle="dropdown" aria-expanded="false" onmouseover="showContactInfo()">
-                                        Contáctenos
+                                        #{login.contactUs}
                                     </a>
                                     <div id="menu-contact"
                                          class="contact align-items-center card card-profile dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" >
@@ -45,29 +46,33 @@
                                             <p class="mb-4">
                                                 #{common.slogan}
                                             </p>
-                                            <button class="btn btn-outline-primary btn-sm">
-                                                <span class="fa fa-twitter"></span> Follow
+                                            <button id="btn-sm-contact" class="btn btn-outline-primary btn-sm">
+                                                <span class="fas fa-mail-bulk"></span> #{common.follow}
                                             </button>
 
-                                            <ul class="social-links list-inline mb-0 mt-2">
+                                            <ul class="social-links list-inline mb-0 mt-2 contact-links">
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+                                                    <a href="javascript:void(0)" title="#{login.contactInfo}" data-toggle="tooltip" data-original-title="Facebook">
+                                                        <i class="fa fa-phone"></i>
+                                                    </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+                                                    <a href="javascript:void(0)" title="#{login.contactEmail}" data-toggle="tooltip" data-original-title="Twitter">
+                                                        <i class="fas fa-at"></i>
+                                                    </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="1234567890"><i class="fa fa-phone"></i></a>
+                                                    <a href="javascript:void(0)" title="#{login.contactFace}" data-toggle="tooltip" data-original-title="1234567890">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="@skypename"><i class="fa fa-skype"></i></a>
+                                                    <a href="javascript:void(0)" title="" data-toggle="tooltip" data-original-title="@skypename">
+                                                        <i class="fab fa-skype"></i>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
-
-                                        
-
-
                                     </div>
                                 </div>
                             </div>
@@ -86,17 +91,16 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <ul class="list-inline list-inline-dots mb-0">
-                                        <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-                                        <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
+                                        <li class="list-inline-item"><a href="./faq.html">#{common.faq}</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Visítenos</a>
+                                    <a href="#{common.site}" class="btn btn-outline-primary btn-sm">#{common.visiteUs}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                            Copyright © 2018 <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">greenapps.co</a> #{common.derechosGreen}.
+                            #{login.copy} <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">#{common.site}</a> #{common.derechosGreen}.
                         </div>
                     </div>
                 </div>

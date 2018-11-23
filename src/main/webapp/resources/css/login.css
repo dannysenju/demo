@@ -239,6 +239,25 @@ body {
     text-shadow: none !important;
     box-shadow: none !important;
 }
+
+
+.card-body #btn-sm-contact {
+    background: transparent !important;
+    width: auto;
+    border: 1px solid #57BD2C !important;
+    color: #74D14C;
+    background-color: transparent;
+    background-image: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 3px;
+}
+
+.card-body #btn-sm-contact:hover {
+    background: #3C9914 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
 .div-button{
     text-align: right;
 }
@@ -529,7 +548,7 @@ body {
     animation: tada 2s linear 4;
 }
 
-.footer {
+.div-footer {
     position: fixed;
     bottom: 0;
     width:100%; 
@@ -561,7 +580,7 @@ body {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     display: none;
     border-radius: 0 !important;
-        border: 1px solid #57BD2C;
+    border: 1px solid #57BD2C;
 }
 
 .show {
@@ -601,4 +620,8 @@ body {
 .card-link {
     box-shadow: none !important;
     border: 1px solid #74D14C !important;
+}
+
+.contact-links a {
+    background-color: #B8EFA0 !important;
 }

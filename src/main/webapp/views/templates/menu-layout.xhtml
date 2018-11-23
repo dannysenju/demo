@@ -21,13 +21,14 @@
         <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
     </h:head>
     <h:body id="entiredPage">
+<!--        MENU SUPERIOR-->
         <h:form id="form-ppal">  
             <div>
                 <p:menubar id="menu-ppal" styleClass="bd-navbar nav-dashboard">
                     <p:menuitem id="admin-menu" value="" action="#{loginBean.navigate('/views/admin/admin.xhtml')}" rendered="#{loginBean.rol eq 'ADMIN'}" 
                                 icon="fas fa-home" styleClass="modules-nav"/>
                     <p:menuitem id="dash-menu" value="" action="#{loginBean.navigate('/views/dashboard.xhtml')}"  rendered="#{loginBean.rol ne 'ADMIN'}"
-                                icon="fe fe-home" styleClass="modules-nav"/>
+                                icon="fas fa-home" styleClass="modules-nav"/>
                     <c:forEach items="#{loginBean.menuModulesList}" var="menu">
                         <p:menuitem value="#{menu.nombre}" url="#{menu.url}" styleClass="modules-nav" 
                                     icon="#{menu.icono}"   />
@@ -42,7 +43,7 @@
                                                     value="#{imageUserBean.getImage(loginBean.id)}" styleClass="avatar" rendered="#{loginBean.hasImage}"
                                                     lastModified="#{userBean.lastModified}"/>
                                     <h:graphicImage library="images" styleClass="avatar" rendered="#{not loginBean.hasImage}" 
-                                                            value="/resources/images/profile.png" />
+                                                    value="/resources/images/profile.png" />
                                 </span>
                                 <span class="ml-2 d-none d-lg-block">
                                     <span>#{loginBean.fullName}</span>
@@ -53,14 +54,14 @@
                                  class="dropdown-content dropdown-menu dropdown-menu-right dropdown-menu-arrow align-items-center" x-placement="bottom-end" 
                                  style="position: absolute; background-color: #93E372; transform: translate3d(-56px, 32px, 0px); top: 16px; left: 28px; will-change: transform;">
                                 <a class="dropdown-item" onclick="goToPerfil()">
-                                    <i class="dropdown-icon fe fe-user" style="color: white;"></i> Perfil
+                                    <i class="dropdown-icon fe fe-user" style="color: white;"></i> #{dash.profile}
                                     <p:remoteCommand name="remotePerfil" actionListener="#{loginBean.navigate('/views/login/edit.xhtml')}" />
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="dropdown-icon fe fe-help-circle" style="color: white;"></i> Ayuda?
+                                    <i class="dropdown-icon fe fe-help-circle" style="color: white;"></i>#{dash.help}
                                 </a>
                                 <a class="dropdown-item" onclick="logOut()" >
-                                    <i class="dropdown-icon fe fe-log-out" style="color: white;"></i>Salir
+                                    <i class="dropdown-icon fe fe-log-out" style="color: white;"></i>#{dash.logout}
                                     <p:remoteCommand name="logOutRemote" actionListener="#{loginBean.logout()}" />
                                 </a>
                             </div>
@@ -69,25 +70,44 @@
                 </p:menubar>
             </div>
         </h:form>
-
+<!--        MENSAJE DE EXPIRACION-->
         <div id="div-derecha" class="container">
             <ui:insert name="headContent">
             </ui:insert>
         </div>
-
-        <div class="container-fluid">
-
-            <div class="page">
-                <div class="page-main">
-                    <div class="my-3 my-md-5">
-                        <div class="container">
-                            <ui:insert name="bodyContent"/>
-                        </div>
-                        
+        <div class="page">
+            <div class="page-main">
+                <div class="my-3 my-md-5">
+                    <div class="container">
+<!--                        CUERPO DE LA APLICACION-->
+                        <ui:insert name="bodyContent"/>
                     </div>
 
                 </div>
+
             </div>
+<!--            PIE DE PAGINA-->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row align-items-center flex-row-reverse">
+                        <div class="col-auto ml-lg-auto">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <ul class="list-inline list-inline-dots mb-0">
+                                        <li class="list-inline-item"><a href="./faq.html">#{common.faq}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="#{common.site}" class="btn btn-outline-primary btn-sm">#{common.visiteUs}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                            #{login.copy} <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">#{common.site}</a> #{common.derechosGreen}.
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </h:body>
 </html>
