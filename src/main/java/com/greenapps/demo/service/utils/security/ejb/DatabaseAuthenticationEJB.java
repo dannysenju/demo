@@ -4,6 +4,7 @@ import com.greenapps.demo.domain.entities.Usuario;
 import com.greenapps.demo.service.utils.security.login.JaasLoginConfig;
 import com.greenapps.demo.service.utils.security.login.MyCallbackHandler;
 import com.greenapps.demo.service.utils.security.utils.Constant;
+import com.greenapps.demo.web.general.UtilsMessage;
 import java.security.Principal;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import javax.security.auth.login.Configuration;
 import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
+
 /**
  *
  * @author danny
@@ -69,11 +71,11 @@ public class DatabaseAuthenticationEJB {
             loginContext.login();
             intentosUsuarios.put(username, (short) 0);
         } catch (FailedLoginException e) {
-            if (e.getMessage().contains("Contraseña incorrecta")) {
+            if (e.getMessage().contains(UtilsMessage.translate("code.passFail", "businesserrors.businesserrors", new String[]{""}))) {
                 addFailedLoginAttempt(username);
             }
             loginContext = null;
-            throw new LoginException("Fallo Auth: " + e.getMessage());
+            throw new LoginException(UtilsMessage.translate("code.failAuth", "businesserrors.businesserrors", new String[]{e.getMessage()}));
         }
         final Iterator<Principal> i1 = loginContext.getSubject().getPrincipals().iterator();
         final Principal principal = (Principal) i1.next();
@@ -102,7 +104,7 @@ public class DatabaseAuthenticationEJB {
                 tempUser.setActivo((short) 0);
                 em.persist(tempUser);
                 intentosUsuarios.put(username, (short) 0);
-                throw new LoginException("intentos excedidos");
+                throw new LoginException(UtilsMessage.translate("code.limitAttempts", "businesserrors.businesserrors", new String[]{""}));
             }
         } else {
             intentosUsuarios.put(username, (short) 1);
@@ -114,7 +116,7 @@ public class DatabaseAuthenticationEJB {
         final int estado = loggedUser.getActivo();
         if (estado != 1) {
             loginContext.logout();
-            throw new LoginException("Usuario inactivo");
+            throw new LoginException(UtilsMessage.translate("code.userInactive", "businesserrors.businesserrors", new String[]{""}));
         }
     }
 

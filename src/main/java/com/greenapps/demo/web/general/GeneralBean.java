@@ -22,14 +22,10 @@ public class GeneralBean {
     public void navigate(String newPage) {
         FacesContext fc = FacesContext.getCurrentInstance();
         String contextPath = fc.getExternalContext().getRequestContextPath();
-        String beforePage = ((HttpServletRequest) fc.getExternalContext().getRequest()).getRequestURI();
-
         try {
-
             fc.getExternalContext().redirect(contextPath + newPage);
-
         } catch (IOException ex) {
-            fc.addMessage(null, new FacesMessage("Error", "error de navegacion"));
+            addErrorMessage(UtilsMessage.translate("failed", "general.general", new String[]{"navegación"}));
         }
     }
 

@@ -6,7 +6,9 @@ import com.greenapps.demo.domain.entities.dto.UserSessionInfoDTO;
 import com.greenapps.demo.service.UserEJB;
 import com.greenapps.demo.service.utils.security.ejb.IAuthBean;
 import com.greenapps.demo.service.utils.security.ejb.UniqueSessionBean;
+import com.greenapps.demo.service.utils.security.utils.Constant;
 import com.greenapps.demo.web.general.GeneralBean;
+import com.greenapps.demo.web.general.UtilsMessage;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +17,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.NoSuchEJBException;
 import javax.enterprise.context.SessionScoped;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -92,7 +93,7 @@ public class LoginBean extends GeneralBean implements Serializable {
         } catch (NoSuchEJBException e) {
             ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
         } catch (Exception e) {
-            e.printStackTrace();
+            addErrorMessage(UtilsMessage.translate("failIntent", "general.general", new String[]{"logeo"}));
         }
         if (isLoginSuccessful) {
             page = loginSuccessful();
@@ -148,9 +149,6 @@ public class LoginBean extends GeneralBean implements Serializable {
 
         facesContext.getExternalContext().getSessionMap().put("userSessionInfo", userSessionInfoDTO);
 
-        String msg = "Usuario logeado con exito" + username;
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
-
         return this.rol.equals("ADMIN") ? "admin/admin.xhtml?faces-redirect=true" : "dashboard.xhtml?faces-redirect=true";
     }
 
@@ -163,11 +161,10 @@ public class LoginBean extends GeneralBean implements Serializable {
      */
     private String processLoginExceptions(LoginException e) {
         actionMessage = e.getMessage().toUpperCase();
-        if (e.getMessage().contains("Usuario Bloqueado")) {
+        if (e.getMessage().contains(Constant.LOCKED_USER)) {
             return "/views/login/activate.xhtml?faces-redirect=true";
         }
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, actionMessage, null));
+        addErrorMessage(actionMessage);
         password = "";
         return "logOn.xhtml";
     }
@@ -175,7 +172,6 @@ public class LoginBean extends GeneralBean implements Serializable {
     /**
      * perform logout operations
      *
-     * @return
      */
     public void logout() {
         uniqueSession.removeUser(username.toUpperCase());

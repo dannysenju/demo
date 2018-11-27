@@ -1,6 +1,7 @@
 package com.greenapps.demo.service.utils.security.login;
 
 import com.greenapps.demo.service.utils.security.utils.UtilsEncrypt;
+import com.greenapps.demo.web.general.UtilsMessage;
 import java.io.IOException;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -59,7 +60,7 @@ public class MyCallbackHandler implements CallbackHandler {
                     case TextOutputCallback.WARNING:
                         break;
                     default:
-                        throw new IOException("Unsupported message type: " + toc.getMessageType());
+                        throw new IOException( UtilsMessage.translate("code.NotSupported", "businesserrors.businesserrors",new String[]{""+toc.getMessageType()}));
                 }
             } else if (callbacks[i] instanceof NameCallback) {
                 final NameCallback nameCallback = (NameCallback) callbacks[i];

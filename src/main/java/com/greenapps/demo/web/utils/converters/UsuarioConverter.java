@@ -27,7 +27,6 @@ public class UsuarioConverter implements Converter {
                 = context.getApplication().getExpressionFactory()
                         .createValueExpression(context.getELContext(),
                                 "#{adminBean}", AdminUserBean.class);
-
         AdminUserBean adBean = (AdminUserBean) vex.getValue(context.getELContext());
         return adBean.getUser(Integer.valueOf(value));
 

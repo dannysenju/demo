@@ -19,6 +19,7 @@ import javax.persistence.Query;
 import org.primefaces.model.DualListModel;
 
 import com.greenapps.demo.service.utils.security.utils.UtilsEncrypt;
+import java.util.Hashtable;
 
 /**
  *
@@ -156,18 +157,24 @@ public class UserEJB {
         return listResult;
     }
 
-    public boolean assignModules(Usuario userModule, DualListModel<Modulo> modules) {
-
+    public Hashtable assignModules(Usuario userModule, DualListModel<Modulo> modules) {
+        
+        Hashtable results = new Hashtable(); 
+           
         List<Modulo> target = modules.getTarget();
         target.removeAll(new HashSet(userModule.getModuloList()));
         String delete = "delete from modulo_usuario where (id_modulo = ? ) and (id_usuario = ?)";
+        int countdeletes = 0;
         Query q1 = em.createNativeQuery(delete);
 
         for (Modulo modulo : modules.getSource()) {
+            countdeletes++;
             q1.setParameter(1, modulo.getIdmodulo());
             q1.setParameter(2, userModule.getIdusuario());
             q1.executeUpdate();
         }
+        
+        results.put("deletes", countdeletes); 
 
         String insert = "insert into modulo_usuario (id_modulo, id_usuario) values (?,?)";
 
@@ -176,13 +183,13 @@ public class UserEJB {
         int countInserts = 0;
 
         for (Modulo modulo : target) {
+            countInserts++;
             q2.setParameter(1, modulo.getIdmodulo());
             q2.setParameter(2, userModule.getIdusuario());
-            countInserts += q2.executeUpdate();
+            q2.executeUpdate();
         }
-
-        return countInserts > 0;
-
+        results.put("inserts", countInserts); 
+        return results;
     }
 
     public boolean deleteUser(Usuario u) {

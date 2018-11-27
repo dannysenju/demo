@@ -7,15 +7,15 @@ package com.greenapps.demo.web.controller;
 
 import com.greenapps.demo.domain.entities.Usuario;
 import com.greenapps.demo.service.UserEJB;
+import com.greenapps.demo.service.utils.exception.BusinessAppException;
 import com.greenapps.demo.web.general.GeneralBean;
+import com.greenapps.demo.web.general.UtilsMessage;
 import com.greenapps.demo.web.utils.emails.EmailUtils;
 import com.greenapps.demo.web.utils.emails.JsfUtilities;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -49,9 +49,18 @@ public class ActivateBean extends GeneralBean implements Serializable {
     public void createCode() {
         String code = jsfUtilities.getCode();
         updateUserCod(code);
-        if (EmailUtils.getInstace().sendEmail(email, code, "Código de Activación")) {
-            isBlockUser = false;
+
+        boolean isSend = false;
+
+        try {
+            isSend = EmailUtils.getInstace().sendEmail(email, code, UtilsMessage.translate("codeActivation", "login.login", new String[]{""}));
+            if (isSend) {
+                isBlockUser = false;
+            }
+        } catch (BusinessAppException ex) {
+            addErrorMessage(UtilsMessage.translate(ex.getCode(), "businesserrors.businesserrors", new String[]{""}));
         }
+
         RequestContext.getCurrentInstance().execute("PF('dlg2').show();");
     }
 
@@ -62,18 +71,21 @@ public class ActivateBean extends GeneralBean implements Serializable {
     }
 
     public void createPass() {
-        FacesContext context = FacesContext.getCurrentInstance();
         String code = jsfUtilities.getCode();
-        if (EmailUtils.getInstace().sendEmail(email, code, "Nueva Contraseña")) {
-            Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
-            this.id = u.getIdusuario();
-            if (userEJB.updatePass(code, this.id)) {
-                navigate("/views/logOn.xhtml");
-            } else {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se pudo actualizar la contraseña, vuelva a intetarlo más tarde", null));
-            }
-        } else {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El correo no se pudo enviar, vuelva a intentarlo más tarde", null));
+        boolean isSend = false;
+        try {
+            isSend = EmailUtils.getInstace().sendEmail(email, code, UtilsMessage.translate("codeActivation", "login.login", new String[]{""}));
+            if (isSend) {
+                Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
+                this.id = u.getIdusuario();
+                if (userEJB.updatePass(code, this.id)) {
+                    navigate("/views/logOn.xhtml");
+                } else {
+                    addErrorMessage(UtilsMessage.translate("failIntent", "general.general", new String[]{"actualizar"}));
+                }
+            } 
+        } catch (BusinessAppException ex) {
+            addErrorMessage(UtilsMessage.translate(ex.getCode(), "businesserrors.businesserrors", new String[]{""}));
         }
     }
 

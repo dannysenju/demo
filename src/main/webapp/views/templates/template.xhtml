@@ -12,7 +12,7 @@
         <h:outputStylesheet library="css" name="animate.css"/>
         <h:outputStylesheet library="css" name="all.css"/>
         <h:outputScript name="login.js" library="js" target="body"/>
-        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
+        <link rel="shortcut icon" type="image/png" href="/demo/resources/images/favicon.png"/>
         <ui:insert name="headArea" />
     </h:head>
 
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="collapse d-lg-flex p-3">
-                    <p:messages id="msj" closable="true" showDetail="true" globalOnly="false" showIcon="false" />
+                    <p:growl globalOnly="true" id="msj-global-temp" autoUpdate="true" showDetail="true" /> 
                     <ui:insert name="contentArea" />
                 </div>
             </div>

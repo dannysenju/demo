@@ -15,6 +15,14 @@ body {
     -moz-osx-font-smoothing: grayscale; 
 }
 
+.ui-growl {
+    bottom: 0 !important;
+    left: 2px !important;
+    top: 80% !important;
+    height: 100px !important;
+    
+}
+
 .login-title, .login-title h1, .login-title span, .login-title span .icn-code-1, .login-title span .icn-code-2, .login-title span .icn-code-3, .login-title span a {
     padding: 20px 0 0 0;
     text-align: center;

@@ -12,7 +12,6 @@
                     <div class="col-1"></div>
                     <div class="col-10">
                         <h:form id="form-user" class="card" >
-                            <p:messages autoUpdate="true" closable="true" globalOnly="false" showDetail="true"/>
                             <div class="card-header text-center">
                                 <div class="row" style="margin: auto;">
                                     <a class="header-brand col-lg-2 mt-1" style="margin: auto; left: 10px;">
@@ -71,7 +70,7 @@
                                                                                  id="loginButton" 
                                                                                  value="#{login.sendButtonPass}" 
                                                                                  action="#{activateBean.createPass()}"
-                                                                                 update="form-user"
+                                                                                 update="form-user, msj-global-temp"
                                                                                  onclick="PF('blockCode').show();"/>
                                                             </div>
                                                         </div>

@@ -10,6 +10,7 @@ import com.greenapps.demo.service.UserEJB;
 import com.greenapps.demo.service.utils.exception.BusinessAppException;
 import com.greenapps.demo.service.utils.security.utils.UtilsEncrypt;
 import com.greenapps.demo.web.general.GeneralBean;
+import com.greenapps.demo.web.general.UtilsMessage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -17,7 +18,6 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -69,60 +69,56 @@ public class UserBean extends GeneralBean implements Serializable {
         try {
             content = IOUtils.toByteArray(uploadedPicture.getInputstream());
             if (userEJB.updateImage(content, usuario.getIdusuario())) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Imagen subida con exito", null));
+                addInfoMessage(UtilsMessage.translate("success", "general.general", new String[]{"cargar imagen de perfil"}));
                 hasImage = true;
                 lastModified = Calendar.getInstance().getTime();
                 LoginBean login = (LoginBean) context.getApplication().getVariableResolver().resolveVariable(context, "loginBean");
                 login.setHasImage(true);
             } else {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se pudo actualizar su foto, contacte al administrador", null));
+                addErrorMessage(UtilsMessage.translate("failIntent", "general.general", new String[]{"cargar imagen"}));
             }
         } catch (IOException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error del servidor, contacte al administrador", null));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"cargar imagen"}));
         }
     }
 
     public void updateBasicData() {
-        FacesContext context = FacesContext.getCurrentInstance();
         Usuario newInfo = new Usuario();
-
         newInfo.setUsername(this.usuario.getUsername().toUpperCase());
         newInfo.setNombreCompleto(this.usuario.getNombreCompleto());
         newInfo.setPassword(pass);
+
         try {
             if (userEJB.updateBasicData(newInfo, this.usuario.getIdusuario())) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualización exitosa", null));
+                addInfoMessage(UtilsMessage.translate("success", "general.general", new String[]{"actualizar"}));
                 fullNameUser = this.usuario.getNombreCompleto();
             } else {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error del servidor, contacte al administrador", null));
+                addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar"}));
             }
         } catch (SQLException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error del servidor, contacte al administrador", null));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar " + ex.getLocalizedMessage()}));
         } catch (BusinessAppException ex) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getCode() + ": " + ex.getMsj(), null));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar; con código: " + ex.getCode() + ": " + ex.getMsj()}));
         }
     }
 
     public void updatePassword() {
-        FacesContext context = FacesContext.getCurrentInstance();
-
         String oldCon = UtilsEncrypt.getInstance().encryptPassword(this.oldPass);
 
         if (UtilsEncrypt.getInstance().comparePassword(oldCon, this.usuario.getPassword())) {
             if (!this.pass.equals("") && this.pass != null) {
                 if (userEJB.updatePass(pass, this.usuario.getIdusuario())) {
-                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualización exitosa", null));
+                    addInfoMessage(UtilsMessage.translate("success", "general.general", new String[]{"actualizar contraseña"}));
                     navigate("/views/logOn.xhtml");
                     ExternalContext c = FacesContext.getCurrentInstance().getExternalContext();
                     c.invalidateSession();
                 } else {
-                    context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al actualizar, contacte al administrador", null));
+                    addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar contraseña"}));
                 }
             }
         } else {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña Anterior no coincide", null));
+            addWarnMessage(UtilsMessage.translate("failed", "general.general", new String[]{"actualizar, contraseña anterior no coincide"}));
         }
-
     }
 
     public Usuario getUsuario() {

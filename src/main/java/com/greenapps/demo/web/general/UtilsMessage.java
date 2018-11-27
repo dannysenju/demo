@@ -5,6 +5,7 @@
  */
 package com.greenapps.demo.web.general;
 
+import com.greenapps.demo.utils.constantview.ConstantView;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -24,21 +25,25 @@ public class UtilsMessage {
      * @param paramValue parametro si lo hay
      * @return
      */
-    public static String translate(String etq, String packageName, String paramValue) {
+    public static String translate(String etq, String packageName, String[] paramValue) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        String messageBundleName = "com.greenapps.demo.message." + packageName;
+        String messageBundleName = ConstantView.RESOURCE_BUNDLE_PATH + packageName;
         Locale locale = facesContext.getViewRoot().getLocale();
         ResourceBundle bundle = ResourceBundle.getBundle(messageBundleName, locale);
 
         String msgValue = bundle.getString(etq);
-
-        if (paramValue.equals("")) {
-            return msgValue;
-        } else {
-            MessageFormat messageFormat = new MessageFormat(msgValue);
-            Object[] args = {paramValue};
-            return messageFormat.format(args);
+        MessageFormat messageFormat = new MessageFormat(msgValue);
+        Object[] msgArgs = new Object[paramValue.length];
+        int indx = 0;
+        for (String string : paramValue) {
+            if (string.equals("")) {
+                return msgValue;
+            }
+            msgArgs[indx] = string;
+            indx++;
         }
+
+        return messageFormat.format(msgArgs);
 
     }
 }

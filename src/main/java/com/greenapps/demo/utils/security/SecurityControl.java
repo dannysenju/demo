@@ -5,7 +5,7 @@
  */
 package com.greenapps.demo.utils.security;
 
-import com.greenapps.demo.utils.constantview.ConstantView;
+import com.greenapps.demo.service.utils.security.utils.Constant;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -26,7 +26,7 @@ public class SecurityControl {
     }
 
     private String encriptKey(String key) {
-        return DigestUtils.sha512Hex(DigestUtils.sha512Hex(ConstantView.SEED) + key);
+        return DigestUtils.sha512Hex(DigestUtils.sha512Hex(Constant.getInstance().getSEED()) + key);
     }
 
 }

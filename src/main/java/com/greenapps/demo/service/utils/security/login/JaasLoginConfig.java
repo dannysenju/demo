@@ -1,6 +1,7 @@
 package com.greenapps.demo.service.utils.security.login;
 
 import com.greenapps.demo.service.utils.security.utils.Constant;
+import com.greenapps.demo.web.general.UtilsMessage;
 import java.util.HashMap;
 import javax.security.auth.login.AppConfigurationEntry;
 import javax.security.auth.login.Configuration;
@@ -20,8 +21,7 @@ public class JaasLoginConfig extends Configuration {
                     AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, new HashMap<String, Object>());
             return configArr;
         }
-
-        throw new RuntimeException("Se esperaba app: [" + Constant.getInstance().getJAAS_DB() + " ] pero llego: " + name);
+        throw new RuntimeException( UtilsMessage.translate("code.expected", "businesserrors.businesserrors", new String[]{Constant.getInstance().getJAAS_DB()}));
     }
 
 }

@@ -25,22 +25,19 @@ public class ModuloPickConverter implements Converter {
 
     @Override
     public Modulo getAsObject(FacesContext context, UIComponent component, String value) {
-
-        System.out.println("String value: {}" + value);
         return getObjectFromUIPickListComponent(component, value);
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object object) {
         String string;
-        System.out.println("Object value: {}" + object);
         if (object == null) {
             string = "";
         } else {
             try {
                 string = String.valueOf(((Modulo) object).getIdmodulo());
             } catch (ClassCastException cce) {
-                throw new ConverterException();
+                throw new ConverterException(cce.getMessage());
             }
         }
         return string;
@@ -58,9 +55,9 @@ public class ModuloPickConverter implements Converter {
 
             return m;
         } catch (ClassCastException cce) {
-            throw new ConverterException("Error interno contacte al administrador");
+            throw new ConverterException(cce.getMessage());
         } catch (NumberFormatException nfe) {
-            throw new ConverterException("Error interno contacte al administrador");
+            throw new ConverterException(nfe.getMessage());
         }
     }
 

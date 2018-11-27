@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.session;
+package com.greenapps.demo.web.session;
 
 import java.io.IOException;
 import javax.servlet.Filter;

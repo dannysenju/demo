@@ -2,6 +2,7 @@ package com.greenapps.demo.service.utils.security.login;
 
 import com.greenapps.demo.service.utils.security.utils.ConnectionHelper;
 import com.greenapps.demo.service.utils.security.utils.Constant;
+import com.greenapps.demo.web.general.UtilsMessage;
 import service.utils.security.utils.Resource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,7 +55,7 @@ public class DataBaseLoginModule implements LoginModule {
     public boolean login() throws LoginException {
         // prompt for a user name and password
         if (callbackHandler == null) {
-            throw new LoginException("Error: no hay un CallbackHandler disponible para garantizar la información de autenticación del usuario");
+            throw new LoginException(UtilsMessage.translate("code.callback", "businesserrors.businesserrors", new String[]{""}));
         }
 
         Callback[] callbacks = new Callback[2];
@@ -78,9 +79,8 @@ public class DataBaseLoginModule implements LoginModule {
         } catch (java.io.IOException ioe) {
             throw new LoginException(ioe.toString());
         } catch (UnsupportedCallbackException uce) {
-            throw new LoginException("Error: " + uce.getCallback().toString() + " no disponible para recopilar información de autenticación del usuario");
+            throw new LoginException(UtilsMessage.translate("code.callbackIna", "businesserrors.businesserrors", new String[]{uce.getCallback().toString()}));
         }
-
         // print debugging information
         if (debug) {
             System.out.println("\t\t[DatabaseLoginModule] user name: " + username);
@@ -103,9 +103,9 @@ public class DataBaseLoginModule implements LoginModule {
                 usernameCorrect = false;
                 break;
             case 0:
-                throw new FailedLoginException("Usuario Bloqueado");
+                throw new FailedLoginException(UtilsMessage.translate("code.blockUser", "businesserrors.businesserrors", new String[]{""}));
             default:
-                throw new FailedLoginException("Error Inesperado del sistema, contactese con el administrador");
+                throw new FailedLoginException(UtilsMessage.translate("code.failed", "businesserrors.businesserrors", new String[]{""}));
         }
 
         if (isCorrectPassword(username, password)) {
@@ -123,9 +123,9 @@ public class DataBaseLoginModule implements LoginModule {
             }
             password = null;
             if (!usernameCorrect) {
-                throw new FailedLoginException("Nombre de usuario Incorrecto");
+                throw new FailedLoginException(UtilsMessage.translate("code.usernameFail", "businesserrors.businesserrors", new String[]{""}));
             } else {
-                throw new FailedLoginException("Contraseña incorrecta");
+                throw new FailedLoginException(UtilsMessage.translate("code.passFail", "businesserrors.businesserrors", new String[]{""}));
             }
         }
     }
@@ -137,14 +137,12 @@ public class DataBaseLoginModule implements LoginModule {
         } else {
             // add a Principal (authenticated identity)
             // to the Subject
-
             // assume the user we authenticated is the SamplePrincipal
             userPrincipal = new DataBasePrincipal(username);
             if (!subject.getPrincipals().contains(userPrincipal)) {
                 subject.getPrincipals().add(userPrincipal);
             }
             System.out.println("\t\t[DatabaseLoginModule] added SamplePrincipal to Subject");
-
             // in any case, clean out state
             username = null;
             for (int i = 0; i < password.length; i++) {
@@ -207,7 +205,7 @@ public class DataBaseLoginModule implements LoginModule {
             ps.setString(1, usernameSearch);
             rsOra = ps.executeQuery();
             if (rsOra.next()) {
-                String passwordString = rsOra.getString("password");
+                String passwordString = rsOra.getString(Constant.FIELD_PASS);
                 char[] passwordBD = passwordString.toCharArray();
                 if (passwordBD.length == passCompare.length) {
                     for (int i = 0; i < passwordBD.length; i++) {
@@ -247,7 +245,7 @@ public class DataBaseLoginModule implements LoginModule {
             ps.setString(1, usernameSearch);
             rsOra = ps.executeQuery();
             if (rsOra.next()) {
-                if (rsOra.getString("activo").equals("0")) {
+                if (rsOra.getString(Constant.FIELD_ACTIVATE).equals(Constant.VALUE_FIELD_INACTIVATE)) {
                     return 0;
                 }
                 return 1;

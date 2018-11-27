@@ -44,7 +44,16 @@ public class Constant {
     public static final String USERNAME_EMAIL = "demosofttrons@gmail.com";
     public static final String NAME_MAIL = "demosofttrons";
     private static final String PASSWORD_EMAIL = "demosoft123!";
+    public static final String FIELD_PASS = "password";
+    public static final String FIELD_ACTIVATE = "activo";
+    public static final String VALUE_FIELD_INACTIVATE = "0";
+    public static final String TYPE_LOGIN_BD = "BD";
+    public static final String ICON_DEFAULT = "fe fe-external-link";
+    public static final String NOT_LOGGED_USER = "NologgedUser";
+    public static final String LOCKED_USER = "Usuario Bloqueado";
+    
 
+    
     public String getSEED() {
         return SEED;
     }

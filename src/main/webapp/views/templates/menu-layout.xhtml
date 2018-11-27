@@ -18,10 +18,10 @@
         <h:outputScript name="bootstrap.js" library="js" target="body"/>
         <h:outputScript name="menu.js" library="js" target="body"/>
         <h:outputScript name="admin.js" library="js" target="body"/>
-        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/images/favicon.png"/>
+        <link rel="shortcut icon" type="image/png" href="/demo/resources/images/favicon.png"/>
     </h:head>
     <h:body id="entiredPage">
-<!--        MENU SUPERIOR-->
+        <!--        MENU SUPERIOR-->
         <h:form id="form-ppal">  
             <div>
                 <p:menubar id="menu-ppal" styleClass="bd-navbar nav-dashboard">
@@ -70,7 +70,7 @@
                 </p:menubar>
             </div>
         </h:form>
-<!--        MENSAJE DE EXPIRACION-->
+        <!--        MENSAJE DE EXPIRACION-->
         <div id="div-derecha" class="container">
             <ui:insert name="headContent">
             </ui:insert>
@@ -79,14 +79,15 @@
             <div class="page-main">
                 <div class="my-3 my-md-5">
                     <div class="container">
-<!--                        CUERPO DE LA APLICACION-->
+                        <!--                        CUERPO DE LA APLICACION-->
+                        <h:form id="msj-global-dash-form">
+                            <p:growl globalOnly="true" id="msj-global-dash" showDetail="true" keepAlive="true" sticky="false" /> 
+                        </h:form>
                         <ui:insert name="bodyContent"/>
                     </div>
-
                 </div>
-
             </div>
-<!--            PIE DE PAGINA-->
+            <!--            PIE DE PAGINA-->
             <footer class="footer">
                 <div class="container">
                     <div class="row align-items-center flex-row-reverse">
@@ -102,9 +103,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                            #{login.copy} <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">#{common.site}</a> #{common.derechosGreen}.
+                        
+                        <div class="col-10 col-lg-auto mt-0 ml-8 text-right">
+                            #{login.copy} <a href=".">#{facesContext.externalContext.initParameterMap['tituloApp']}</a>. #{login.poweredBy} <a href="https://github.com/dannysenju" target="_blank">#{common.site}</a> #{common.derechosGreen}
                         </div>
+                        <div class="col-2"></div>
                     </div>
                 </div>
             </footer>

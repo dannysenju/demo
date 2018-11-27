@@ -16,6 +16,7 @@ import com.greenapps.demo.web.general.UtilsMessage;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -66,7 +67,7 @@ public class AdminUserBean extends GeneralBean implements Serializable {
             initPickList(userModule.getModuloList());
 
         } catch (BusinessAppException ex) {
-            addErrorMessage(UtilsMessage.translate("accessDenied", "general.general", "administración"));
+            addErrorMessage(UtilsMessage.translate("accessDenied", "general.general", new String[]{"administración, con código: " + ex.getCode() + " " + ex.getMsj()}));
             navigate("/views/error/not-access.xhtml");
         }
     }
@@ -85,18 +86,24 @@ public class AdminUserBean extends GeneralBean implements Serializable {
         this.newUser.setPassword(UtilsEncrypt.getInstance().encryptPassword(pass));
         try {
             userEJB.createUser(this.newUser);
-            addInfoMessage(UtilsMessage.translate("create", "general.general", Usuario.class.getSimpleName() + ": " + this.newUser.getNombreCompleto()));
+            addInfoMessage(
+                    UtilsMessage.translate("create", "general.general", new String[]{Usuario.class.getSimpleName() + ": " + this.newUser.getNombreCompleto()}));
             this.newUser = new Usuario();
         } catch (SQLException ex) {
-            addErrorMessage(UtilsMessage.translate("error", "general.general", "Crear"));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"Crear"}));
         }
     }
 
     public void assignModules() {
-        if (userEJB.assignModules(this.userModule, this.modules)) {
-            addInfoMessage(UtilsMessage.translate("assignedModule", "general.general", this.userModule.getNombreCompleto()));
-        } else {
-            addErrorMessage(UtilsMessage.translate("error", "general.general", "Asignar módulos"));
+
+        Hashtable assign = userEJB.assignModules(this.userModule, this.modules);
+
+        if (((int) assign.get("deletes") == 0) && ((int) assign.get("inserts") > 0)) {
+            addInfoMessage(UtilsMessage.translate("assignedModule", "general.general", new String[]{assign.get("inserts").toString(), assign.get("deletes").toString(), this.userModule.getNombreCompleto()}));
+        } else if (((int) assign.get("deletes") > 0) && ((int) assign.get("inserts") > 0)) {
+            addWarnMessage(UtilsMessage.translate("assignedModule", "general.general", new String[]{assign.get("inserts").toString(), assign.get("deletes").toString(), this.userModule.getNombreCompleto()}));
+        } else if (((int) assign.get("deletes") > 0) && ((int) assign.get("inserts") == 0)) {
+            addErrorMessage(UtilsMessage.translate("assignedModule", "general.general", new String[]{assign.get("inserts").toString(), assign.get("deletes").toString(), this.userModule.getNombreCompleto()}));
         }
         initPickList(userEJB.getUserById(this.userModule.getIdusuario()).getModuloList());
 
@@ -108,29 +115,26 @@ public class AdminUserBean extends GeneralBean implements Serializable {
     }
 
     public void deleteUser(Usuario u) {
-
         String userInactive = u.getNombreCompleto();
         RequestContext.getCurrentInstance().execute("PF('dlgDelete').hide();");
         if (userEJB.deleteUser(u)) {
-            addWarnMessage(UtilsMessage.translate("delete", "general.general", userInactive));
+            addWarnMessage(UtilsMessage.translate("delete", "general.general", new String[]{userInactive}));
             listUsers = initListUsers();
         } else {
-            addErrorMessage(UtilsMessage.translate("error", "general.general", "Eliminar"));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"Eliminar"}));
         }
 
     }
-    
-    public void activateUser(Usuario u) {
 
+    public void activateUser(Usuario u) {
         String userInactive = u.getNombreCompleto();
         RequestContext.getCurrentInstance().execute("PF('dlgActivate').hide();");
         if (userEJB.activateUser(u)) {
-            addInfoMessage(UtilsMessage.translate("activate", "general.general", userInactive));
+            addInfoMessage(UtilsMessage.translate("activate", "general.general", new String[]{userInactive}));
             listUsers = initListUsers();
         } else {
-            addErrorMessage(UtilsMessage.translate("error", "general.general", "Activar"));
+            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"Activar"}));
         }
-
     }
 
     public Usuario getUser(Integer id) {

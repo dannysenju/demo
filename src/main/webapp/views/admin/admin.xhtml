@@ -36,7 +36,6 @@
                                         <h6>#{common.basicData}</h6>
                                     </div>
                                     <div class="card-body" id="create-user-body">
-                                        <p:messages id="msj-create-user-form" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
                                         <fieldset class="form-fieldset">
                                             <div class="row">
                                                 <div class="col-lg-4">
@@ -186,7 +185,7 @@
                                                              id="create-user" 
                                                              value="#{common.createBtn}" 
                                                              action="#{adminBean.createUser()}"
-                                                             update="@form"
+                                                             update="@form , msj-global-dash-form:msj-global-dash"
                                                              />
                                         </div>
                                     </div>
@@ -195,7 +194,6 @@
                             <p:tab title="#{common.asignModules}" titletip="#{common.tooltipClic}" titleStyleClass="card">
                                 <h:form id="form-user-module">
                                     <div class="card-body">
-                                        <p:messages id="msj-asign-module" closable="true" globalOnly="false" autoUpdate="false" showDetail="false" showIcon="false"/>
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-8">
@@ -255,7 +253,7 @@
                                     <div class="card-footer text-right">
                                         <div class="d-flex">
                                             <p:commandButton id="moduleSubmit" value="Asignar Módulos" action="#{adminBean.assignModules()}"
-                                                             update="@form, pickList"  styleClass="btn btn-primary ml-auto btn-hidden-prime"/>
+                                                             update=":msj-global-dash-form:msj-global-dash, @form, pickList, "  styleClass="btn btn-primary ml-auto btn-hidden-prime"/>
                                         </div>
                                     </div>
                                 </h:form>

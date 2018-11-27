@@ -9,8 +9,9 @@
         </locale-config>
 
         <message-bundle>
-            com.greenapps.demo.messages.jsf
+            com.greenapps.demo.message.jsf.jsf
         </message-bundle>
+        
         <resource-bundle>
             <base-name>com.greenapps.demo.message.general.general</base-name>
             <var>common</var>
@@ -26,6 +27,10 @@
         <resource-bundle>    
             <base-name>com.greenapps.demo.message.roles.rol</base-name>
             <var>rolMsg</var>
+        </resource-bundle>
+        <resource-bundle>    
+            <base-name>com.greenapps.demo.message.businesserrors.businesserrors</base-name>
+            <var>business</var>
         </resource-bundle>
     </application>
     

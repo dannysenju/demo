@@ -2,6 +2,7 @@ package com.greenapps.demo.service.utils.security.ejb;
 
 import com.greenapps.demo.domain.entities.Modulo;
 import com.greenapps.demo.domain.entities.Usuario;
+import com.greenapps.demo.service.utils.exception.BusinessAppException;
 import com.greenapps.demo.service.utils.security.utils.Constant;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class IAuthBean {
         authenticationType = Constant.getInstance().getAUTHENTICATION_TYPE();
 
         if (authenticationType != null) {
-            if ("BD".equals(authenticationType)) {
+            if (Constant.TYPE_LOGIN_BD.equals(authenticationType)) {
                 return loginBD(user, password);
             }
         }
@@ -73,14 +74,12 @@ public class IAuthBean {
         return true;
     }
 
-    public void logout() {
+    public void logout() throws BusinessAppException {
         if (loginContext != null) {
             try {
                 loginContext.logout();
             } catch (Exception e) {
-                // nothing
-                System.out.println("FIXME: LOGOUT ERROR");
-                e.printStackTrace();
+                throw new BusinessAppException("code.LOGOUT", e.getMessage());
             }
         }
     }
@@ -104,7 +103,7 @@ public class IAuthBean {
                 loggedUser = null;
             }
         }
-        return "NologgedUser";
+        return Constant.NOT_LOGGED_USER;
     }
 
     public ArrayList<Modulo> getUserModulos(String user) {
@@ -120,7 +119,7 @@ public class IAuthBean {
             for (Modulo modulo : loggedUser.getModuloList()) {
 
                 if (!(modulo.getIcono() != null)) {
-                    modulo.setIcono("fe fe-external-link");
+                    modulo.setIcono(Constant.ICON_DEFAULT);
                 }
 
                 if (modulo.getActivo() == 1) {
