@@ -7,7 +7,6 @@
         <ui:define name="contentArea">
 
             <h:form id="login-form">
-                <p:messages id="msj-login" showDetail="false" closable="true" styleClass="msj-login" showIcon="false" />
                 <h2>#{login.titleCard}</h2>
                 <div class="div-validate">
                     <p:inputText styleClass="input" 
@@ -31,7 +30,7 @@
                 <p:commandButton styleClass="button"
                                  id="loginButton" 
                                  value="#{login.login}" action="#{loginBean.login()}"
-                                 update="@all"/>
+                                 update="@form , msj-global-dash-form:msj-global-dash"/>
 
             </h:form>
         </ui:define>

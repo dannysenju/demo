@@ -30,9 +30,9 @@ public class UserEJB {
 
     @PersistenceContext
     private EntityManager em; // pone a disposicion JPA
-    
+
     public void createUser(Usuario u) throws SQLException {
-    
+
         u.setUsername(u.getUsername().toUpperCase());
         u.setRol(u.getRol().toUpperCase());
         em.persist(u);
@@ -92,40 +92,62 @@ public class UserEJB {
     public boolean updateBasicData(Usuario newInfo, Integer idusuario) throws SQLException, BusinessAppException {
 
         Usuario oldUser = getUserById(idusuario);
-        boolean isFullName = false;
-        boolean isUsername = false;
+        String fullName = newInfo.getNombreCompleto();
+        String username = newInfo.getUsername();
+        String email = newInfo.getEmail();
+        String phone = newInfo.getTelefono();
+
         StringBuilder queryJpa = new StringBuilder("Update Usuario u SET ");
 
-        if (newInfo.getNombreCompleto() != null && !oldUser.getNombreCompleto().equals(newInfo.getNombreCompleto())) {
-            queryJpa.append("u.nombreCompleto = :fullname ");
-            isFullName = true;
-        }
-        queryJpa.append(isFullName ? ", " : "");
+        String queryFullName = (oldUser.getNombreCompleto() != null && oldUser.getNombreCompleto().equals(fullName)) ? "" : " u.nombreCompleto = :fullname ";
 
-        if (newInfo.getUsername() != null && !oldUser.getUsername().equals(newInfo.getUsername())) {
-
-            if (countUsername(newInfo.getUsername())) {
-                throw new BusinessAppException("1001", "Ya se encuentra el nombre de usuario");
-            }
-            queryJpa.append(" u.username = :username ");
-            isUsername = true;
+        String queryUserName = "";
+        if (!queryFullName.equals("")) {
+            queryUserName = (oldUser.getUsername() != null && oldUser.getUsername().equals(username)) ? "" : " , u.username = :username";
         } else {
-            queryJpa.replace(queryJpa.indexOf(","), queryJpa.indexOf(",") + 1, "");
+            queryUserName = (oldUser.getUsername() != null && oldUser.getUsername().equals(username)) ? "" : " u.username = :username";
+        }
+        String queryEmail = "";
+
+        if ((!queryFullName.equals("") && !queryUserName.equals("")) || (queryFullName.equals("") && !queryUserName.equals(""))) {
+            queryEmail = (oldUser.getEmail() != null && oldUser.getEmail().equals(email)) ? "" : " , u.email = :email";
+        } else {
+            queryEmail = (oldUser.getEmail() != null && oldUser.getEmail().equals(email)) ? "" : " u.email = :email";
         }
 
-        queryJpa.append("WHERE u.idusuario= :id");
+        String queryPhone = "";
+
+        if ((!queryFullName.equals("") && !queryUserName.equals("") && !queryEmail.equals(""))
+                || (queryFullName.equals("") && !queryUserName.equals("") && !queryEmail.equals(""))
+                || (queryFullName.equals("") && queryUserName.equals("") && !queryEmail.equals(""))) {
+
+            queryPhone = (oldUser.getTelefono() != null && oldUser.getTelefono().equals(phone)) ? "" : " , u.telefono = :telefono";
+        } else {
+            queryPhone = (oldUser.getTelefono() != null && oldUser.getTelefono().equals(phone)) ? "" : " u.telefono = :telefono";
+        }
+
+        queryJpa.append(queryFullName);
+        queryJpa.append(queryUserName);
+        queryJpa.append(queryEmail);
+        queryJpa.append(queryPhone);
+        queryJpa.append(" WHERE u.idusuario= :id ");
 
         Query q = em.createQuery(queryJpa.toString());
 
-        if (isFullName) {
-            q.setParameter("fullname", newInfo.getNombreCompleto());
-        }
-
-        if (isUsername) {
-            q.setParameter("username", newInfo.getUsername());
-        }
-
         q.setParameter("id", idusuario);
+
+        if (!queryFullName.equals("")) {
+            q.setParameter("fullname", fullName);
+        }
+        if (!queryUserName.equals("")) {
+            q.setParameter("username", username);
+        }
+        if (!queryEmail.equals("")) {
+            q.setParameter("email", email);
+        }
+        if (!queryPhone.equals("")) {
+            q.setParameter("telefono", phone);
+        }
 
         return q.executeUpdate() > 0;
 
@@ -145,7 +167,7 @@ public class UserEJB {
         }
         return listResult;
     }
-    
+
     public List<Usuario> getAllUsers() {
         List<Usuario> listAll = em.createNamedQuery("Usuario.findAll", Usuario.class).getResultList();
         List<Usuario> listResult = new ArrayList<>();
@@ -158,9 +180,9 @@ public class UserEJB {
     }
 
     public Hashtable assignModules(Usuario userModule, DualListModel<Modulo> modules) {
-        
-        Hashtable results = new Hashtable(); 
-           
+
+        Hashtable results = new Hashtable();
+
         List<Modulo> target = modules.getTarget();
         target.removeAll(new HashSet(userModule.getModuloList()));
         String delete = "delete from modulo_usuario where (id_modulo = ? ) and (id_usuario = ?)";
@@ -173,8 +195,8 @@ public class UserEJB {
             q1.setParameter(2, userModule.getIdusuario());
             q1.executeUpdate();
         }
-        
-        results.put("deletes", countdeletes); 
+
+        results.put("deletes", countdeletes);
 
         String insert = "insert into modulo_usuario (id_modulo, id_usuario) values (?,?)";
 
@@ -188,7 +210,7 @@ public class UserEJB {
             q2.setParameter(2, userModule.getIdusuario());
             q2.executeUpdate();
         }
-        results.put("inserts", countInserts); 
+        results.put("inserts", countInserts);
         return results;
     }
 
@@ -197,12 +219,11 @@ public class UserEJB {
                 .setParameter("id", u.getIdusuario());
         return q.executeUpdate() > 0;
     }
-    
+
     public boolean activateUser(Usuario u) {
         Query q = em.createQuery("Update Usuario u SET u.activo = 1 WHERE u.idusuario= :id")
                 .setParameter("id", u.getIdusuario());
         return q.executeUpdate() > 0;
     }
-    
 
 }

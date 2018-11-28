@@ -3,7 +3,7 @@ package com.greenapps.demo.service.utils.security.login;
 import com.greenapps.demo.service.utils.security.utils.ConnectionHelper;
 import com.greenapps.demo.service.utils.security.utils.Constant;
 import com.greenapps.demo.web.general.UtilsMessage;
-import service.utils.security.utils.Resource;
+import com.greenapps.demo.service.utils.security.utils.Resource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

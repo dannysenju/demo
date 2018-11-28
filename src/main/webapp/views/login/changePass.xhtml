@@ -46,21 +46,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-4 col-lg-12">
-                                                        <div class="form-group">
-                                                            <div class="div-form-validate">
-                                                                <p:inputText styleClass="input" id="create-email" placeholder="#{login.placeHolderEmail}" rendered="#{activateBean.isBlockUser}"
-                                                                             required="true" value="#{activateBean.email}" requiredMessage="#{common.requiredField}"
-                                                                             size="20">
-                                                                    <f:validator validatorId="valEmail"/>
-                                                                    <p:ajax event="keyup" update="email-msg"/>
-                                                                </p:inputText>
-                                                                <p:message id="email-msg" for="create-email" styleClass="invalid" display="text"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <!--pass-->
                                                 <div class="row">
                                                     <div class="col-md-4 col-lg-12">
@@ -83,19 +68,22 @@
                                 </div>
                             </div>
                             <p:blockUI block="entiredPage" trigger="loginButton" widgetVar="blockCode" styleClass="block-div">
-                                <div class="row">
-                                    <div class="col-2"></div>
-                                    <div class="col-8 loading">
-                                        <div class="loading-bar"></div>
-                                        <div class="loading-bar"></div>
-                                        <div class="loading-bar"></div>
-                                        <div class="loading-bar"></div>
+                                <div class="m-5">
+                                    <div class="row">
+                                        <div class="col-2 mt-2"></div>
+                                        <div class="col-8 loading">
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                        </div>
+                                        <div class="col-2"></div>
                                     </div>
-                                    <div class="col-2"></div>
+                                    <div class="row">
+                                        #{common.wait}
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    #{common.wait}
-                                </div>
+
                             </p:blockUI>
                         </h:form>    
                     </div>

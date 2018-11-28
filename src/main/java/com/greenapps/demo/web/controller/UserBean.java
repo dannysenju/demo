@@ -86,7 +86,8 @@ public class UserBean extends GeneralBean implements Serializable {
         Usuario newInfo = new Usuario();
         newInfo.setUsername(this.usuario.getUsername().toUpperCase());
         newInfo.setNombreCompleto(this.usuario.getNombreCompleto());
-        newInfo.setPassword(pass);
+        newInfo.setEmail(this.usuario.getEmail());
+        newInfo.setTelefono(this.usuario.getTelefono());
 
         try {
             if (userEJB.updateBasicData(newInfo, this.usuario.getIdusuario())) {

@@ -51,9 +51,9 @@ public class ActivateBean extends GeneralBean implements Serializable {
         updateUserCod(code);
 
         boolean isSend = false;
-
+        Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
         try {
-            isSend = EmailUtils.getInstace().sendEmail(email, code, UtilsMessage.translate("codeActivation", "login.login", new String[]{""}));
+            isSend = EmailUtils.getInstace().sendEmail(u.getEmail(), code, UtilsMessage.translate("codeActivation", "login.login", new String[]{""}));
             if (isSend) {
                 isBlockUser = false;
             }
@@ -73,10 +73,10 @@ public class ActivateBean extends GeneralBean implements Serializable {
     public void createPass() {
         String code = jsfUtilities.getCode();
         boolean isSend = false;
+        Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
         try {
-            isSend = EmailUtils.getInstace().sendEmail(email, code, UtilsMessage.translate("codeActivation", "login.login", new String[]{""}));
+            isSend = EmailUtils.getInstace().sendEmail(u.getEmail(), code, UtilsMessage.translate("newPass", "login.login", new String[]{""}));
             if (isSend) {
-                Usuario u = userEJB.getUserbyName(this.username.toUpperCase());
                 this.id = u.getIdusuario();
                 if (userEJB.updatePass(code, this.id)) {
                     navigate("/views/logOn.xhtml");

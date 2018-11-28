@@ -246,7 +246,11 @@
                                             <div class="col-lg-8">
                                                 <label class="form-label">#{common.selectModules}</label>
                                                 <p:pickList id="pickList" value="#{adminBean.modules}" converter="moduloPickConverter"
-                                                            var="module" itemLabel="#{module.nombre}" itemValue="#{module}" />
+                                                            var="module" itemLabel="#{module.nombre}" itemValue="#{module}"
+                                                            addAllLabel="#{common.addAllLabel}" addLabel="#{common.addLabel}" 
+                                                            removeAllLabel="#{common.removeAllLabel}"
+                                                            removeLabel="#{common.removeLabel}"
+                                                            />
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +265,6 @@
                             <p:tab title="#{common.downUp}" id="delete-activate" titletip="#{common.tooltipClic}" titleStyleClass="card">
                                 <h:form id="delete-user">
                                     <p:tooltip />
-                                    <p:messages id="msj-delete" closable="true" globalOnly="false" autoUpdate="false" showIcon="false" showDetail="true"/>
                                     <p:dataGrid var="user" value="#{adminBean.listUsers}" columns="3" layout="grid" styleClass="card-body div-hidden-prime" paginatorPosition="bottom"
                                                 emptyMessage="#{common.emptyList}" currentPageReportTemplate="{startRecord} - {endRecord} de {totalRecords}"
                                                 rows="6" paginator="true" id="users" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -294,11 +297,11 @@
                                                     <div class="media-body">
                                                         <ul class="social-links list-inline mb-0 mt-6">
                                                             <li class="list-inline-item">
-                                                                <p:commandButton styleClass="delete-icon" title="#{common.inactive}" id="select-delete" onclick="PF('dlgDelete').show();"
+                                                                <p:commandButton styleClass="delete-icon" title="#{common.inactiveTool}" id="select-delete" onclick="PF('dlgDelete').show();"
                                                                                  icon="fa fa-trash" rendered="#{user.activo eq 1}">
                                                                     <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
                                                                 </p:commandButton>
-                                                                <p:commandButton styleClass="activate-icon" title="#{common.activate}" id="select-activate" onclick="PF('dlgActive').show();"
+                                                                <p:commandButton styleClass="activate-icon" title="#{common.activateTool}" id="select-activate" onclick="PF('dlgActive').show();"
                                                                                  icon="fa fa-power-off" rendered="#{user.activo eq 0}">
                                                                     <f:setPropertyActionListener value="#{user}" target="#{adminBean.userToDelete}" />
                                                                 </p:commandButton>
@@ -326,7 +329,8 @@
                                             <div class="card-options text-center">
                                                 <a href="#" class="btn btn-danger btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="confirmDialog()">#{common.yes}
                                                     <i class="far fa-trash-alt"></i>
-                                                    <p:remoteCommand name="confirmDeleteUser" action="#{adminBean.deleteUser(adminBean.userToDelete)}" update="@form"/>
+                                                    <p:remoteCommand name="confirmDeleteUser" action="#{adminBean.deleteUser(adminBean.userToDelete)}" 
+                                                                     update="@form, msj-global-dash-form:msj-global-dash"/>
                                                 </a>
                                                 <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgDelete').hide();">#{common.no}
                                                     <i class="fas fa-undo-alt"></i>
@@ -348,7 +352,9 @@
                                             <div class="card-options text-center">
                                                 <a href="#" class="btn btn-success btn-sm mr-1" style="margin: 0 auto; color: #fff;" onclick="activate()">#{common.yes}
                                                     <i class="fas fa-power-off"></i>
-                                                    <p:remoteCommand name="confirmActivateUser" action="#{adminBean.activateUser(adminBean.userToDelete)}" update="@form"/>
+                                                    <p:remoteCommand name="confirmActivateUser" 
+                                                                     action="#{adminBean.activateUser(adminBean.userToDelete)}" 
+                                                                     update="@form , msj-global-dash-form:msj-global-dash"/>
                                                 </a>
                                                 <a class="btn btn-warning btn-sm ml-1" style="margin: 0 auto;" onclick="PF('dlgActive').hide();">#{common.no}
                                                     <i class="fas fa-undo-alt"></i>
