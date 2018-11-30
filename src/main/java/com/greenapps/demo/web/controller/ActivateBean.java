@@ -92,6 +92,8 @@ public class ActivateBean extends GeneralBean implements Serializable {
     public void activateUser() {
         if (userEJB.activateUserByCode(this.codActivate, this.id)) {
             navigate("/views/logOn.xhtml");
+        } else {
+            addErrorMessage(UtilsMessage.translate("code.erroCode", "businesserrors.businesserrors", new String[]{""}));
         }
     }
 

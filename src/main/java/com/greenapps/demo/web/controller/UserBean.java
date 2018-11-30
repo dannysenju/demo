@@ -99,7 +99,7 @@ public class UserBean extends GeneralBean implements Serializable {
         } catch (SQLException ex) {
             addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar " + ex.getLocalizedMessage()}));
         } catch (BusinessAppException ex) {
-            addErrorMessage(UtilsMessage.translate("error", "general.general", new String[]{"actualizar; con código: " + ex.getCode() + ": " + ex.getMsj()}));
+            addErrorMessage(UtilsMessage.translate(ex.getCode(), ex.getMsj(), new String[]{""}));
         }
     }
 

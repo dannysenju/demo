@@ -62,10 +62,16 @@ public class UserEJB {
 
     public boolean activateUserByCode(String codActivate, int id) {
 
+        String codeBD = getUserById(id).getCodActivacion();
+
+        if (codActivate.equals(codeBD)) {
         Query q = em.createQuery("Update Usuario u Set u.activo = 1 WHERE u.idusuario= :id");
         q.setParameter("id", id);
 
         return q.executeUpdate() > 0;
+    }
+
+        return false;
     }
 
     public boolean updatePass(String code, int id) {
@@ -93,7 +99,7 @@ public class UserEJB {
 
         Usuario oldUser = getUserById(idusuario);
         String fullName = newInfo.getNombreCompleto();
-        String username = newInfo.getUsername();
+        String username = newInfo.getUsername().toUpperCase();
         String email = newInfo.getEmail();
         String phone = newInfo.getTelefono();
 
@@ -107,9 +113,13 @@ public class UserEJB {
         } else {
             queryUserName = (oldUser.getUsername() != null && oldUser.getUsername().equals(username)) ? "" : " u.username = :username";
         }
+        
+        if(!queryUserName.equals("") & countUsername(username)){
+             throw new BusinessAppException("code.U1", "businesserrors.businesserrors");
+        }
         String queryEmail = "";
 
-        if ((!queryFullName.equals("") && !queryUserName.equals("")) || (queryFullName.equals("") && !queryUserName.equals(""))) {
+        if (!queryFullName.equals("") || !queryUserName.equals("")) {
             queryEmail = (oldUser.getEmail() != null && oldUser.getEmail().equals(email)) ? "" : " , u.email = :email";
         } else {
             queryEmail = (oldUser.getEmail() != null && oldUser.getEmail().equals(email)) ? "" : " u.email = :email";
@@ -117,10 +127,7 @@ public class UserEJB {
 
         String queryPhone = "";
 
-        if ((!queryFullName.equals("") && !queryUserName.equals("") && !queryEmail.equals(""))
-                || (queryFullName.equals("") && !queryUserName.equals("") && !queryEmail.equals(""))
-                || (queryFullName.equals("") && queryUserName.equals("") && !queryEmail.equals(""))) {
-
+        if (!queryFullName.equals("") || !queryUserName.equals("") || !queryEmail.equals("")) {
             queryPhone = (oldUser.getTelefono() != null && oldUser.getTelefono().equals(phone)) ? "" : " , u.telefono = :telefono";
         } else {
             queryPhone = (oldUser.getTelefono() != null && oldUser.getTelefono().equals(phone)) ? "" : " u.telefono = :telefono";
