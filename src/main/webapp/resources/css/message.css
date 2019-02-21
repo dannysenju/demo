@@ -1,0 +1,96 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4/12/2018, 07:06:15 PM
+    Author     : danny
+*/
+/*ESTILOS DE LOS MENSAJES*/
+.ui-widget {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif !important;
+    font-size: 14px !important;
+}
+
+.ui-shadow {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+.ui-growl {
+    bottom: 0 !important;
+    left: 3px !important;
+    top: 85% !important;
+    width: 350px!important;
+}
+
+.ui-growl-title {
+    padding: 2px !important;
+}
+
+.ui-growl-item {
+    padding: 8px 15px !important;
+}
+
+.ui-growl-item-container {
+    opacity: 1 !important;
+}
+
+.ui-growl-image-info{
+     background: url('/demo/resources/images/thumbs-up-regular.png') no-repeat !important;
+     margin-top: 5px !important;
+}
+
+.ui-growl-image-warn {
+     background: url('/demo/resources/images/exclamation-triangle-solid.png') no-repeat !important;
+     margin-top: 5px !important;
+}
+.ui-growl-image-error {
+     background: url('/demo/resources/images/skull-crossbones-solid.png') no-repeat !important;
+     margin-top: 5px !important;
+}
+
+.ui-growl-info {
+    border-left: 3px solid #5eba00 !important;
+    background: #fff !important;
+    color: #5eba00 !important;
+    font-size: 12px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.ui-growl-error {
+    border-left: 3px solid #cd201f !important;
+    background: #fff !important;
+    color: #cd201f !important;
+    font-size: 12px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.ui-growl-warn {
+    border-left: 3px solid #f1c40f !important;
+    background: #fff !important;
+    color: #f1c40f !important;
+    font-size: 12px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.ui-growl-message {
+    width: 275px !important;
+}
+
+.ui-growl-message p {
+    font-weight: bold !important;
+}
+
+/*MENSAJE DE ALERTA DE REQUERIMIENTO EN LOS INPUTS*/
+.invalid {
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #F44337 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}

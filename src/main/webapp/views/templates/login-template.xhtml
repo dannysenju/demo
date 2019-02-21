@@ -6,11 +6,11 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>#{facesContext.externalContext.initParameterMap['tituloApp']}</title>
-        <h:outputStylesheet library="css" name="login.css"/>
-        <h:outputStylesheet library="css" name="color.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
         <h:outputStylesheet library="css" name="all.css"/>
         <h:outputStylesheet library="css" name="animate.css"/>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <h:outputStylesheet library="css" name="message.css"/>
         <link rel="shortcut icon" type="image/png" href="/demo/resources/images/favicon.png"/>
         <ui:insert name="headArea" />
     </h:head>
@@ -26,14 +26,13 @@
                     </span>
                 </div>
                 <!--                        CUERPO DE LA APLICACION-->
-                <h:form id="msj-global-dash-form">
-                    <p:growl globalOnly="true" id="msj-global-dash" showDetail="true" keepAlive="true" sticky="false" /> 
+                <h:form id="form-msj-login">
+                    <p:growl globalOnly="true" id="msj-global-login" showDetail="true" keepAlive="true" sticky="false" /> 
                 </h:form>
                 <div class="card-login" style="animation: lightSpeedIn 1s linear 1;">
-                    <div class="form-login">
-                        <ui:insert name="contentArea"/>
-                    </div>
-                    <div class="cta"><a href="login/changePass.xhtml">#{login.forgot}</a></div>
+                    <ui:insert name="contentArea"/>
+
+                    <div class="card-forgot"><a href="login/changePass.xhtml">#{login.forgot}</a></div>
                 </div>
             </div>
         </div>

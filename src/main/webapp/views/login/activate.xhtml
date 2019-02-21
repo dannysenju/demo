@@ -7,10 +7,10 @@
 
     <ui:composition template="/views/templates/template.xhtml">
         <ui:define name="contentArea">
-            <div class="container">
+            <div class="container mt-6">
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-10">
+                    <div class="col-3"></div>
+                    <div class="col-6">
                         <h:form id="form-user" class="card" >
                             <div class="card-header text-center">
                                 <div class="row" style="margin: auto;">
@@ -24,8 +24,8 @@
                             </div>
                             <div class="card-body text-center">
                                 <div class="row">
-                                    <div class="col-4"></div>
-                                    <div class="col-4">
+                                    <div class="col-2 mr-5"></div>
+                                    <div class="col-7 ml-1">
                                         <h3 class="header-link" style="margin: 0;margin-bottom: 15px;">#{login.activateAccount}</h3>
                                         <div class="card-link">
                                             <div class="card-image waves-effect waves-block waves-light" style=" display: #{activateBean.isBlockUser ? 'block' : 'none'}; background-color: #ececec40;">
@@ -57,7 +57,7 @@
                                                                                  id="loginButton" 
                                                                                  value="#{login.sendCode}" rendered="#{activateBean.isBlockUser}"
                                                                                  action="#{activateBean.createCode()}"
-                                                                                 update="form-user"
+                                                                                 update="form-user, msj-global-temp:growl-temp"
                                                                                  onclick="PF('blockCode').show();"/>
                                                             </div>
                                                         </div>
@@ -95,7 +95,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-4"/>
+                                        <div class="col-3"/>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                             <div class="loading-bar"></div>
                                             <div class="loading-bar"></div>
                                         </div>
-                                        <div class="col-2"></div>
+                                        <div class="col-3"></div>
                                     </div>
                                     <div class="row">
                                         #{common.wait}
@@ -129,7 +129,7 @@
                         </p:dialog>  
 
                     </div>
-                    <div class="col-1"></div>
+                    <div class="col-3"></div>
                 </div>
             </div>
         </ui:define>

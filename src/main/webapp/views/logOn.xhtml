@@ -5,33 +5,24 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/views/templates/login-template.xhtml">
         <ui:define name="contentArea">
-
             <h:form id="login-form">
                 <h2>#{login.titleCard}</h2>
-                <div class="div-validate">
-                    <p:inputText styleClass="input" 
-                                 id="username" 
-                                 placeholder="#{login.placeHolderUser}"
-                                 required="true" value="#{loginBean.username}"
-                                 requiredMessage="#{common.requiredField}">
-                        <p:ajax event="keyup" update="usuario"/>
+                <div class="form-validate">
+                    <p:inputText id="username" placeholder="#{login.placeHolderUser}" required="true" 
+                                 value="#{loginBean.username}" requiredMessage="#{common.requiredField}">
+                        <p:ajax event="keyup" update="msj-username"/>
                     </p:inputText>
-                    <p:message id="usuario" for="username" styleClass="invalid" display="text"/>
+                    <p:message id="msj-username" for="username" styleClass="invalid" display="text"/>
                 </div>
-                <div class="div-validate">
-                    <p:password styleClass="input" 
-                                id="pass" required="true" 
-                                placeholder="#{login.placeHolderPass}" value="#{loginBean.password}"
-                                requiredMessage="#{common.requiredField}">
-                        <p:ajax event="keyup" update="password"/>
+                <div class="form-validate">
+                    <p:password id="pass" required="true" placeholder="#{login.placeHolderPass}" 
+                                value="#{loginBean.password}" requiredMessage="#{common.requiredField}">
+                        <p:ajax event="keyup" update="msj-password"/>
                     </p:password>
-                    <p:message id="password" for="pass" styleClass="invalid" display="text"/>
+                    <p:message id="msj-password" for="pass" styleClass="invalid" display="text"/>
                 </div>
-                <p:commandButton styleClass="button"
-                                 id="loginButton" 
-                                 value="#{login.login}" action="#{loginBean.login()}"
-                                 update="@form , msj-global-dash-form:msj-global-dash"/>
-
+                <p:commandButton styleClass="button" id="btn-login" value="#{login.login}" 
+                                 action="#{loginBean.login()}" update="@form , form-msj-login:msj-global-login"/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -7,68 +7,10 @@ and open the template in the editor.
     Created on : 9/10/2018, 02:25:02 PM
     Author     : danny
 */
-
 body {
     font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
-.ui-growl {
-    bottom: 0 !important;
-    left: 5px !important;
-    top: 85% !important;
-    height: 100px !important;
-    width: 350px!important;
-}
-
-.ui-growl-item-container {
-    opacity: 1 !important;
-    
-}
-
-.ui-growl-image-info{
-     background: url('/demo/resources/images/thumbs-up-regular.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-
-.ui-growl-image-warn {
-     background: url('/demo/resources/images/exclamation-triangle-solid.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-.ui-growl-image-error {
-     background: url('/demo/resources/images/skull-crossbones-solid.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-
-.ui-state-highlight {
-    border: 1px solid rgba(0, 40, 100, 0.12) !important;
-    background: #f8f9fa !important;
-    color: #16181b !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-.ui-growl-info {
-    border-left: 3px solid #5eba00 !important;
-    background: #fff !important;
-    color: #5eba00 !important;
-    font-size: 12px !important;
-}
-.ui-growl-error {
-    border-left: 3px solid #cd201f !important;
-    background: #fff !important;
-    color: #cd201f !important;
-    font-size: 12px !important;
-}
-.ui-growl-warn {
-    border-left: 3px solid #f1c40f !important;
-    background: #fff !important;
-    color: #f1c40f !important;
-    font-size: 12px !important;
-}
-
-.ui-growl-message {
-    width: 275px !important;
-}
 .nav-dashboard {
     outline: 0;
     display: block;
@@ -85,12 +27,6 @@ body {
     font-size: 14px;
     line-height: 1.42857143 !important;
 }
-
-/*.nav-dashboard:hover {
-    color: #fff;
-    text-decoration: none;
-    
-}*/
 
 .ui-menu-list {
     padding-right: 15px !important;
@@ -282,15 +218,6 @@ body {
 
 .div-form-validate {
     padding-bottom: : 1px; }
-
-.invalid {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 12px !important;
-    font-weight: bold;
-    color: #F44337 !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
-}
 
 .ui-password-info {
     margin: 0 !important;

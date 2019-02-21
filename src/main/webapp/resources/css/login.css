@@ -10,184 +10,68 @@ body {
     font-family: 'RobotoDraft', 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 300;
-    background-color: #B8EFA0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; 
 }
-
-.ui-shadow {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 0 !important;
-}
-
-.ui-growl {
-    bottom: 0 !important;
-    left: 5px !important;
-    top: 80% !important;
-    height: 100px !important;
-    width: 350px!important;
-}
-
-.ui-growl-item-container {
-    opacity: 1 !important;
-    
-}
-
-.ui-growl-image-info{
-     background: url('/demo/resources/images/thumbs-up-regular.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-
-.ui-growl-image-warn {
-     background: url('/demo/resources/images/exclamation-triangle-solid.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-.ui-growl-image-error {
-     background: url('/demo/resources/images/skull-crossbones-solid.png') no-repeat !important;
-     margin-top: 5px !important;
-}
-
-.ui-state-highlight {
-    border: 1px solid rgba(0, 40, 100, 0.12) !important;
-    background: #f8f9fa !important;
-    color: #16181b !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-.ui-growl-info {
-    border-left: 3px solid #5eba00 !important;
-    background: #fff !important;
-    color: #5eba00 !important;
-    font-size: 12px !important;
-}
-.ui-growl-error {
-    border-left: 3px solid #cd201f !important;
-    background: #fff !important;
-    color: #cd201f !important;
-    font-size: 12px !important;
-}
-.ui-growl-warn {
-    border-left: 3px solid #f1c40f !important;
-    background: #fff !important;
-    color: #f1c40f !important;
-    font-size: 12px !important;
-}
-
-.ui-growl-message {
-    width: 275px !important;
-}
-
-.login-title, .login-title h1, .login-title span, .login-title span .icn-code-1, .login-title span .icn-code-2, .login-title span .icn-code-3, .login-title span a {
-    padding: 20px 0 0 0;
+/* ESTILOS DEL TITULO DE LOGIN*/
+.login-title {
+    padding-top: 60px;
     text-align: center;
-    letter-spacing: 2px; }
-.login-title h1, .login-title span .icn-code-1 h1, .login-title span .icn-code-2 h1, .login-title span .icn-code-3 h1, .login-title span a h1 {
+    letter-spacing: 4px; 
+}
+.login-title h1 {
     margin: 0;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
     font-size: 48px;
-    color: rgba(0, 0, 0, 0.47);
-    font-weight: 300; }
-.login-title span, .login-title span .icn-code-1 span, .login-title span .icn-code-2 span, .login-title span .icn-code-3 span, .login-title span a span, .login-title span .icn-code-1, .login-title span .icn-code-2, .login-title span .icn-code-3, .login-title span a, .login-title span .icn-code-1 a, .login-title span .icn-code-2 a, .login-title span .icn-code-3 a {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    color: #3C9914;
+    font-weight: bold; 
+}
+.login-title span {
     font-size: 12px;
-    font-weight: 300; }
-.login-title span .icn-code-1 {
-    color: #81d4fa;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: small;
-    font-weight: 300; }
-.login-title span .icn-code-2 {
-    color: #81d4fa;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: small;
-    font-weight: 300; }
-.login-title span .icn-code-3 {
-    color: #81d4fa;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: small;
-    font-weight: 300; }
-.login-title span a, .login-title span .icn-code-1 a, .login-title span .icn-code-2 a, .login-title span .icn-code-3 a {
-    color: #74D14C;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none; 
-    margin-left: -22px;
+    font-weight: 300;
+    color: #495057;
 }
-
-.span-register{
-    text-align: center;
-    letter-spacing: 2px;
-    padding: 10px;
-}
-
-.span-register a {
-    color: #74D14C;
-    line-height: 1.4286;
-    margin: 8px 8px;
-    text-transform: none;
-    font-weight: 500;
-    display: inline-block;
-}
-
-
+/*CARD DE LOGIN, INPUTS Y BOTONES*/
 .card-login {
     position: relative;
     background: #fff;
     width: 100%;
     margin: 0 auto;
     top: 0;
-    height: none;
+    height: 100%;
+    padding-top: 10px;
     max-width: 280px;
     border-top: 5px solid #74D14C;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); 
 }
 
-.card-login .form-login {
-    height: 100%;
-    padding-top: 10px;
-}
-
 .card-login h2 {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
     color: #74D14C;
     line-height: 2;
     text-align: center; 
     font-size: 25px;
     font-weight: 500;
-    margin: 10px 0 20px;
 }
 
 .card-login input {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
     border: none;
-    border-bottom: 0.001rem solid #9e9e9e;
-    font-size: 14px;
+    border-bottom: 1px solid #9e9e9e;
     font-weight: 400 !important;
     outline: none;
     display: block;
     width: 250px;
     box-shadow: none;
-    padding: 5px 0 5px 10px;
+    padding: 7px 0 0px 15px;
     margin-left: 15px;
     box-sizing: border-box;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
-    border-radius: 0px;
+    border-radius: 0;
     margin-bottom: 15px;
 }
 
 .card-login input:focus {
-    border-bottom: 0.001rem solid #74D14C;
-    -webkit-box-shadow: 0 1px 0 0 #74D14C;
-    box-shadow: 0.001rem 0 0 #74D14C;
-}
-
-.card-login input:required {
-    background: #d50000; 
+    border-bottom: 1px solid #74D14C;
+    box-shadow: none !important;
 }
 
 .card-login button {
@@ -200,412 +84,47 @@ body {
     color: #fff;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
-    margin-left: 15px;
-    margin-bottom: 25px;
-    margin-top: 5px;
+    margin: 5px 0 25px 15px;
+    text-shadow: none;
 }
 
 .card-login button:hover {
     background: #57BD2C;
     box-shadow: none !important;
     text-shadow: none !important;
-    border: 0 !important;
+    
 }
-
-.card-login .cta {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
+/*CARD DE OLVIDO CONTRASEÑA*/
+.card-login .card-forgot {
     background: #B8EFA0;
-    width: 100%;
     padding: 15px 40px;
     box-sizing: border-box;
     color: #666666;
     text-align: center; 
 }
 
-.card-login .cta:hover {
+.card-login .card-forgot:hover {
     background: #74D14C;
 }
-.card-login .cta a {
+.card-login .card-forgot a {
     color: #000;
     text-decoration: none; 
 }
 
-.card-login .cta a:hover {
+.card-login .card-forgot a:hover {
     border-bottom: 1px solid #000;
 }
 
-.div-validate {
-    padding: 0 0 15px 0; }
-
-.div-form-validate {
-    padding-bottom: : 1px; }
-
-.invalid {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    font-size: 12px !important;
-    font-weight: bold;
-    color: #F44337 !important;
-    background-color: transparent !important;
-    border-color: transparent !important;
-}
-
-.card-header h3{
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-    margin: 0;
-    color: #202124;
-    font-family: 'Google Sans',arial,sans-serif;
-}  
-
-.card-body input {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    border: none;
-    border-bottom: 0.01rem solid #9e9e9e;
-    font-size: 14px;
-    font-weight: 400 !important;
-    outline: none;
-    display: block;
-    width: 100%;
-    box-shadow: none;
-    box-sizing: border-box;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-    border-radius: 0px;
-    margin-bottom: 15px;
-}
-
-.card-body input:focus {
-    border-bottom: 0.001rem solid #57BD2C;
-    -webkit-box-shadow: 0 1px 0 0 #57BD2C;
-    box-shadow: 0 0.001rem 0 0 #57BD2C;
-}
-
-.card-body input:required {
-    background: #d50000; 
-}
-
-.card-body button {
-    cursor: pointer;
-    background: #57BD2C !important;
-    width: 250px;
-    border: 0 !important;
-    border-radius: 0px;
-    padding: 0px;
-    color: #fff;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-}
-
-.card-body button:hover {
-    background: #3C9914 !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-}
-
-
-.card-body #btn-sm-contact {
-    background: transparent !important;
-    width: auto;
-    border: 1px solid #57BD2C !important;
-    color: #74D14C;
-    background-color: transparent;
-    background-image: none;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    border-radius: 3px;
-}
-
-.card-body #btn-sm-contact:hover {
-    background: #3C9914 !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-}
-.div-button{
-    text-align: right;
-}
-
-
-.div-form-validate .ui-password-info {
-    margin: 0;
-    color: #000;
-    text-shadow: none;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 2;
-}
-
-.div-form-validate .ui-password-panel {
-    padding: 4px 4px 0px 4px;
-    width: 150px;
-    background: #fff;
-    margin-top: -16px;
-    border: 0.01rem solid #9e9e9e;
-    border-radius: 0px;
-    box-shadow: none;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-}
-
-.div-form-validate .fancy-checkbox {
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.div-form-validate .fancy-checkbox i {
-    font-size: 25px;
-}
-
-
-.div-form-validate .fancy-checkbox input[type="checkbox"],
-.fancy-checkbox .checked {
-    display: none;
-
-}
-
-.fancy-checkbox input[type="checkbox"]:checked ~ .checked
-{
-    display: inline-block;
-}
-
-.fancy-checkbox input[type="checkbox"]:checked ~ .unchecked
-{
-    display: none;
-    cursor: pointer;
-}
-
-.div-image-banner {
-    display: flex;
-    -webkit-flex-shrink: 0;
-    flex-shrink: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.div-image-banner img {
-    height: 13rem;
-}
-
-.header-link{
-    color: #57BD2C;
-    font-weight: 300;
-    font-size: 1.92rem;
-    line-height: 110%;
-    margin: 1.9466666667rem 0 1.168rem 0;
-}
-.card-link{
-    overflow: visible;
-    position: relative;
-    margin: .5rem 0 1rem 0;
-    background-color: #fff;
-    -webkit-transition: -webkit-box-shadow .25s;
-    transition: -webkit-box-shadow .25s;
-    transition: box-shadow .25s;
-    transition: box-shadow .25s, -webkit-box-shadow .25s;
-    border-radius: 2px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-}
-
-.card-link .card-image {
-    position: relative;
-    display: block;
-}
-.card-link .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    border-style: none;
-}
-
-.card-link .card-content {
-    padding: 24px;
-    border-radius: 0 0 2px 2px;
-}
-
-.card-link .card-content .card-title {
-    display: block;
-    line-height: 32px;
-    font-size: 23px;
-    font-weight: 300;
-    color: #212121 !important;
-}
-
-
-
-.waves-effect {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    -webkit-transition: .3s ease-out;
-    transition: .3s ease-out;
-
-}
-
-.msj-login{
-    font-size: 12px;
-    font-weight: 900;
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-}
-
-#login-form\:msj-login .ui-corner-all {
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-}
-
-.no-print {
-    display: none !important;
-}
-
-.modal-login {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: 0;
-    outline: 0;
-}
-
-.block-div {
-    width: 100px;
-}
-.loading {
-    position: relative;
-    padding-left: 0 !important;
-}
-.loading-bar {
-    display: inline-block;
-    width: 4px;
-    height: 18px;
-    border-radius: 4px;
-    animation: loading 1s ease-in-out infinite;
-}
-.loading-bar:nth-child(1) {
-    background-color: #3498db;
-    animation-delay: 0;
-}
-.loading-bar:nth-child(2) {
-    background-color: #c0392b;
-    animation-delay: 0.09s;
-}
-.loading-bar:nth-child(3) {
-    background-color: #f1c40f;
-    animation-delay: .18s;
-}
-.loading-bar:nth-child(4) {
-    background-color: #27ae60;
-    animation-delay: .27s;
-}
-
-@keyframes loading {
-    0% {
-        transform: scale(1);
-    }
-    20% {
-        transform: scale(1, 2.2);
-    }
-    40% {
-        transform: scale(1);
-    }
-}
-
-.card-activate input {
-    font-family: 'RobotoDraft', 'Roboto', sans-serif;
-    border: 0 !important;
-    border-bottom: 1px solid #9e9e9e !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    outline: none;
-    display: block;
-    width: 100%;
-    box-shadow: none !important;
-    box-sizing: border-box;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-    border-radius: 0px;
-    margin-bottom: 15px;
-    /* border: none !important; */
-    text-shadow: none !important;
-}
-
-.card-activate input:focus {
-    border-bottom: 1px solid #57BD2C;
-    -webkit-box-shadow: 0 1px 0 0 #57BD2C;
-    box-shadow: 1px 0 0 #57BD2C;
-}
-
-.card-activate input:required {
-    background: #d50000; 
-}
-
-.card-activate button {
-    cursor: pointer;
-    background: #81d4fa !important;
-    width: 250px;
-    border: 0 !important;
-    border-radius: 0px;
-    padding: 0px;
-    color: #fff !important;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-    font-weight: 500 !important;
-    text-shadow: none !important;
-}
-
-.card-activate button:hover {
-    background: #0277bd !important; 
-}
-.div-button{
-    text-align: right;
-}
-
-.btn-outline-primary:hover {
-    background-color: #B8EFA0 !important;
-}
-
-.text-muted {
-    color: #e0e5ec !important;
-}
-
-.ui-dialog .ui-dialog-titlebar {
-    text-shadow: none !important;
-    box-shadow: none !important;
-    background: #93E372 !important;
-}
-
-.ui-state-hover .ui-icon {
-    background-color: #fff !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-    border: 0 !important;
-}
-
+/*ANIMACION DE LA IMAGEN DEL TITULO*/
 .animated-title-img {
     animation: rubberBand 5s normal infinite; 
     width: 10rem !important;
 }
+
 .animated-title {
     animation: tada 2s linear 4;
 }
-
+ /*PIE DE PAGINA DERECHOS RESERVADOS*/
 .div-footer {
     position: fixed;
     bottom: 0;
@@ -613,73 +132,4 @@ body {
     font:italic bold 10px arial,sans-serif; 
     font-size: 11px !important;
     text-align:center;
-}
-
-.animated-title-img-pass {
-    width: 150px !important; 
-    animation: zoomIn 5s normal infinite;
-}
-
-.animated-contact {
-    color: #3C9914 !important; 
-    border-color: #3C9914 !important; 
-    animation: swing 1s linear infinite !important;
-}
-
-.contact {
-    position: absolute !important;
-    background-color: #fff;
-    transform: translate3d(-56px, 32px, 0px);
-    top: 12px !important;
-    right: 0;
-    will-change: transform;
-    width: 400px !important;
-    z-index: 1000;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    display: none;
-    border-radius: 0 !important;
-    border: 1px solid #57BD2C;
-}
-
-.show {
-    display: block !important;
-}
-
-.card-options a:not(.btn) i {
-    font-size: 2rem !important;
-
-}
-.card-options {
-    position: relative;
-    bottom: 30px;
-    right: 0;
-}
-
-
-.dropdown-menu-arrow:after {
-    top: -11px !important;
-    border-right: 10px solid transparent !important;
-    border-bottom: 10px solid #fff !important;
-    border-left: 10px solid transparent !important;
-}
-
-.dropdown-menu-arrow:before {
-    top: -11px !important;
-    border-right: 10px solid transparent !important;
-    border-bottom: 10px solid rgba(0, 40, 100, 0.12) !important;
-    border-left: 10px solid transparent !important;
-    border-bottom-color: rgba(0, 0, 0, 0.74) !important;
-}
-
-.card-profile-img {
-    border: 3px solid #74D14C !important;
-}
-
-.card-link {
-    box-shadow: none !important;
-    border: 1px solid #74D14C !important;
-}
-
-.contact-links a {
-    background-color: #B8EFA0 !important;
 }

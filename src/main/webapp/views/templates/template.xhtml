@@ -6,11 +6,11 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>#{facesContext.externalContext.initParameterMap['tituloApp']}</title>
-        <h:outputStylesheet library="css" name="tabler.css"/>
         <h:outputStylesheet library="css" name="dashboard.css"/>
-        <h:outputStylesheet library="css" name="login.css"/>
+        <h:outputStylesheet library="css" name="template.css"/>
         <h:outputStylesheet library="css" name="animate.css"/>
         <h:outputStylesheet library="css" name="all.css"/>
+        <h:outputStylesheet library="css" name="message.css"/>
         <h:outputScript name="login.js" library="js" target="body"/>
         <link rel="shortcut icon" type="image/png" href="/demo/resources/images/favicon.png"/>
         <ui:insert name="headArea" />
@@ -28,11 +28,9 @@
                             <div class="d-flex order-lg-2 ml-auto mt-1">
                                 <div class="nav-item d-none d-md-flex dropdown">
                                     <a href="javascript:void(0)"  id="btn-contact" class="btn btn-sm btn-outline-primary animated-contact" target="_blank"
-                                       data-toggle="dropdown" aria-expanded="false" onmouseover="showContactInfo()">
-                                        #{login.contactUs}
+                                       data-toggle="dropdown" aria-expanded="false" onmouseover="showContactInfo()">#{login.contactUs}
                                     </a>
-                                    <div id="menu-contact"
-                                         class="contact align-items-center card card-profile dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" >
+                                    <div id="menu-contact" class="contact align-items-center card card-profile dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" >
                                         <div class="card-header" style="background-image: url('/demo/resources/images/contact.jpg');">
                                             <div class="card-options">
                                                 <a href="javascript:void(0)" class="card-options-remove" data-toggle="card-remove" style="color: #fff;" onclick="hideContactInfo()">
@@ -41,8 +39,8 @@
                                             </div>
                                         </div>
                                         <div class="card-body text-center">
-                                            <img class="card-profile-img" src="/demo/resources/images/contact_2.png" style="background: #ffffff8f;"/>
-                                            <h3 class="mb-3" style="color: #3C991;">#{common.nameCompany}</h3>
+                                            <img class="card-profile-img" src="/demo/resources/images/contact_2.png" style="background: #fff;"/>
+                                            <h3 class="mb-3" style="color: #3C9914;">#{common.nameCompany}</h3>
                                             <p class="mb-4">
                                                 #{common.slogan}
                                             </p>
@@ -80,7 +78,10 @@
                     </div>
                 </div>
                 <div class="collapse d-lg-flex p-3">
-                    <p:growl globalOnly="true" id="msj-global-temp" autoUpdate="true" showDetail="true" /> 
+                    <h:form id="msj-global-temp">
+                        <p:growl globalOnly="true" id="growl-temp" autoUpdate="true" showDetail="true" /> 
+                    </h:form>
+                    
                     <ui:insert name="contentArea" />
                 </div>
             </div>

@@ -1,0 +1,444 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:300");
+
+body {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+}
+/*CABECERA*/
+.header{
+    background-color: #74D14C;
+}
+
+.animated-title-img-pass {
+    width: 150px !important; 
+    animation: zoomIn 5s normal infinite;
+}
+
+.animated-contact {
+    color: #fff !important;
+    border-color: #fff !important;
+    animation: swing 1s linear infinite !important;
+    text-shadow: none;
+}
+
+.contact {
+    position: absolute !important;
+    background-color: #fff;
+    transform: translate3d(-56px, 32px, 0px);
+    top: 12px !important;
+    right: 0;
+    will-change: transform;
+    width: 400px !important;
+    z-index: 1000;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    display: none;
+    border-radius: 0 !important;
+    border: 1px solid #57BD2C;
+}
+
+.show {
+    display: block !important;
+}
+
+
+/*TRIANGULO DE LA ESQUINA DE LA CARTA*/
+.dropdown-menu-arrow:after {
+    top: -11px !important;
+    border-right: 10px solid transparent !important;
+    border-bottom: 10px solid #fff !important;
+    border-left: 10px solid transparent !important;
+}
+
+.dropdown-menu-arrow:before {
+    top: -11px !important;
+    border-right: 10px solid transparent !important;
+    border-bottom: 10px solid rgba(0, 40, 100, 0.12) !important;
+    border-left: 10px solid transparent !important;
+    border-bottom-color: rgba(0, 0, 0, 0.74) !important;
+}
+/*CARTA DE CONTACTO*/
+.card-options {
+    position: relative;
+    bottom: 30px;
+    right: 0;
+}
+.card-options a:not(.btn) i {
+    font-size: 2rem !important;
+
+}
+.card-profile-img {
+    border: 3px solid #74D14C !important;
+}
+
+.contact-links a {
+    color: #B8EFA0 !important;
+}
+
+#btn-sm-contact {
+    background: transparent !important;
+    width: auto;
+    border: 1px solid #57BD2C !important;
+    color: #74D14C;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 3px;
+}
+
+#btn-sm-contact:hover {
+    background: #3C9914 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/*CARD DEL FORMULARIO*/
+
+.header-link{
+    color: #57BD2C;
+    font-weight: 300;
+    font-size: 1.92rem;
+}
+
+.card-link{
+    overflow: visible;
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: none !important;
+    border: 1px solid #74D14C !important;
+}
+
+.card-link .card-image {
+    position: relative;
+    display: block;
+}
+.card-link .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    border-style: none;
+}
+
+.card-link .card-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+}
+
+.card-link .card-content .card-title {
+    display: block;
+    line-height: 32px;
+    font-size: 23px;
+    font-weight: 300;
+    color: #212121 !important;
+}
+
+.card-header h3{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+    color: #202124;
+}  
+
+.card-body input {
+    border: none;
+    border-bottom: 0.01rem solid #9e9e9e;
+    font-size: 14px;
+    font-weight: 400 !important;
+    outline: none;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.card-body input:focus {
+    border-bottom: 0.001rem solid #57BD2C;
+    -webkit-box-shadow: 0 1px 0 0 #57BD2C;
+    box-shadow: 0 0.001rem 0 0 #57BD2C;
+}
+
+.card-body input:required {
+    background: #d50000; 
+}
+
+.card-body button {
+    cursor: pointer;
+    background: #57BD2C !important;
+    width: 250px;
+    border: 0 !important;
+    border-radius: 0px;
+    padding: 0px;
+    color: #fff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.card-body button:hover {
+    background: #3C9914 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+
+
+.div-button{
+    text-align: right;
+}
+
+
+.div-form-validate .ui-password-info {
+    margin: 0;
+    color: #000;
+    text-shadow: none;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2;
+}
+
+.div-form-validate .ui-password-panel {
+    padding: 4px 4px 0px 4px;
+    width: 150px;
+    background: #fff;
+    margin-top: -16px;
+    border: 0.01rem solid #9e9e9e;
+    border-radius: 0px;
+    box-shadow: none;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+.div-form-validate .fancy-checkbox {
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.div-form-validate .fancy-checkbox i {
+    font-size: 25px;
+}
+
+
+.div-form-validate .fancy-checkbox input[type="checkbox"],
+.fancy-checkbox .checked {
+    display: none;
+
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+
+.fancy-checkbox input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+    cursor: pointer;
+}
+
+.div-image-banner {
+    display: flex;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.div-image-banner img {
+    height: 13rem;
+}
+
+
+
+
+
+
+
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+
+}
+
+.msj-login{
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+#login-form\:msj-login .ui-corner-all {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.no-print {
+    display: none !important;
+}
+
+.modal-login {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0;
+    outline: 0;
+}
+
+.block-div {
+    width: 100px;
+}
+.loading {
+    position: relative;
+    padding-left: 0 !important;
+}
+.loading-bar {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+    background-color: #3498db;
+    animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+    background-color: #c0392b;
+    animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+    background-color: #f1c40f;
+    animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+    background-color: #27ae60;
+    animation-delay: .27s;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1, 2.2);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.card-activate input {
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+    border: 0 !important;
+    border-bottom: 1px solid #9e9e9e !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    outline: none;
+    display: block;
+    width: 100%;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    border-radius: 0px;
+    margin-bottom: 15px;
+    /* border: none !important; */
+    text-shadow: none !important;
+}
+
+.card-activate input:focus {
+    border-bottom: 1px solid #57BD2C;
+    -webkit-box-shadow: 0 1px 0 0 #57BD2C;
+    box-shadow: 1px 0 0 #57BD2C;
+}
+
+.card-activate input:required {
+    background: #d50000; 
+}
+
+.card-activate button {
+    cursor: pointer;
+    background: #81d4fa !important;
+    width: 250px;
+    border: 0 !important;
+    border-radius: 0px;
+    padding: 0px;
+    color: #fff !important;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    font-weight: 500 !important;
+    text-shadow: none !important;
+}
+
+.card-activate button:hover {
+    background: #0277bd !important; 
+}
+.div-button{
+    text-align: right;
+}
+
+.btn-outline-primary:hover {
+    background-color: #B8EFA0 !important;
+}
+
+.text-muted {
+    color: #e0e5ec !important;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    text-shadow: none !important;
+    box-shadow: none !important;
+    background: #93E372 !important;
+}
+
+.ui-state-hover .ui-icon {
+    background-color: #fff !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+/*CLASES QUE QUITAN COSAS DE PRIME*/
+.no-shadows {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
